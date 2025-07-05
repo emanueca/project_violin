@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aprendendo Violino</title>
+    <title>Aprendendo Violino - Projeto Interativo</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Adicionado: Link para a biblioteca de animações AOS.js -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <script>
         // Configuração do Tailwind para o modo escuro
         tailwind.config = {
@@ -19,46 +21,35 @@
             scroll-padding-top: 80px; /* Evita que o cabeçalho fixo cubra os títulos das seções */
         }
 
-        /* Custom CSS for special effects */
-        .church-contributors {
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .contributor-card {
-            transition: all 0.5s ease;
-            transform-style: preserve-3d;
-        }
-        
-        .contributor-card:hover {
-            transform: translateY(-10px) rotateX(10deg);
-            box-shadow: 0 20px 30px rgba(0,0,0,0.2);
-        }
-        
-        .teacher-card {
-            transition: all 0.3s ease;
-        }
-        
-        .teacher-card:hover {
-            transform: scale(1.03);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-        }
-        
+        /* Hero Section com efeito Parallax */
         .hero-section {
             background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1612299273574-d833ac798e83?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
             background-size: cover;
             background-position: center;
+            background-attachment: fixed; /* Chave para o efeito parallax */
         }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+
+        /* Efeitos de hover nos cards */
+        .contributor-card {
+            transition: all 0.5s ease;
+            transform-style: preserve-3d;
         }
-        
+        .contributor-card:hover {
+            transform: translateY(-10px) rotateX(10deg);
+            box-shadow: 0 20px 30px rgba(0,0,0,0.2);
+        }
+        .teacher-card {
+            transition: all 0.3s ease;
+        }
+        .teacher-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Animação do ícone de violino */
         .violin-icon {
             animation: float 3s ease-in-out infinite;
         }
-        
         @keyframes float {
             0% { transform: translateY(0px); }
             50% { transform: translateY(-10px); }
@@ -70,11 +61,57 @@
             color: #ca8a04; /* Cor amber-600 */
             font-weight: 600;
         }
+        
+        /* NOVO: Efeito de notas flutuantes */
+        .floating-notes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1; /* Fica atrás de todo o conteúdo */
+            pointer-events: none; /* Não interfere com cliques */
+        }
+        .floating-notes span {
+            position: absolute;
+            bottom: -50px;
+            font-size: 2rem;
+            color: rgba(202, 138, 4, 0.15); /* Cor amber-600 com opacidade */
+            animation: rise 15s linear infinite;
+        }
+        .dark .floating-notes span {
+            color: rgba(255, 255, 255, 0.08);
+        }
+        @keyframes rise {
+            to {
+                transform: translateY(-105vh);
+                opacity: 0;
+            }
+        }
+        /* Posições e delays diferentes para cada nota */
+        .floating-notes span:nth-child(1) { left: 10%; animation-duration: 20s; animation-delay: 0s; }
+        .floating-notes span:nth-child(2) { left: 20%; animation-duration: 15s; animation-delay: 5s; font-size: 1.5rem; }
+        .floating-notes span:nth-child(3) { left: 35%; animation-duration: 25s; animation-delay: 2s; }
+        .floating-notes span:nth-child(4) { left: 50%; animation-duration: 18s; animation-delay: 8s; font-size: 2.5rem; }
+        .floating-notes span:nth-child(5) { left: 65%; animation-duration: 14s; animation-delay: 1s; }
+        .floating-notes span:nth-child(6) { left: 80%; animation-duration: 22s; animation-delay: 6s; font-size: 1.8rem; }
+        .floating-notes span:nth-child(7) { left: 90%; animation-duration: 17s; animation-delay: 4s; }
+
     </style>
 </head>
 <body class="font-sans bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-colors duration-300">
+    
+    <!-- NOVO: Container para as notas flutuantes -->
+    <div class="floating-notes">
+        <span>♫</span> <span>♩</span> <span>♬</span>
+        <span>♪</span> <span>♫</span> <span>♬</span>
+        <span>♩</span>
+    </div>
+
     <!-- Header/Navigation -->
     <header class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm shadow-md sticky top-0 z-50">
+        <!-- (O código do seu header permanece o mesmo) -->
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
             <a href="#home" class="flex items-center space-x-2">
                 <i class="fas fa-music text-3xl text-amber-600 violin-icon"></i>
@@ -99,8 +136,6 @@
                 </button>
             </div>
         </div>
-        
-        <!-- Mobile menu -->
         <div class="md:hidden hidden bg-white dark:bg-gray-800 py-2 px-4 shadow-lg" id="mobile-menu">
             <a href="#home" class="nav-link block w-full text-left py-2 font-medium text-gray-700 dark:text-gray-300">Início</a>
             <a href="#project" class="nav-link block w-full text-left py-2 font-medium text-gray-700 dark:text-gray-300">O Projeto</a>
@@ -115,7 +150,7 @@
     <main>
         <!-- Hero Section -->
         <section class="hero-section text-white py-20 md:py-32" id="home">
-            <div class="container mx-auto px-4 text-center">
+            <div class="container mx-auto px-4 text-center" data-aos="fade-in" data-aos-duration="1200">
                 <h1 class="text-4xl md:text-6xl font-bold mb-6">Aprenda Violino com Paixão</h1>
                 <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">Descubra a alegria da música através do nosso projeto</p>
                 <a href="#contact" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300">
@@ -127,519 +162,207 @@
         <!-- Introduction Section -->
         <section class="py-16 bg-white dark:bg-gray-900" id="home-intro">
             <div class="container mx-auto px-4">
-                <div class="max-w-4xl mx-auto text-center mb-12">
+                <div class="max-w-4xl mx-auto text-center mb-12" data-aos="fade-up">
                     <h2 class="text-3xl font-bold text-gray-800 dark:text-white mb-6">Fortalecendo o Projeto</h2>
                     <p class="text-xl text-gray-600 dark:text-gray-400 mb-6">Mais Música, Mais Gente, Mais Coração</p>
                     <div class="w-24 h-1 bg-amber-600 mx-auto mb-8"></div>
                 </div>
                 
                 <div class="flex flex-col md:flex-row items-center mb-16">
-                    <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
-                        <img src="https://images.unsplash.com/photo-1599307897258-a72611e93a74?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                    <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8" data-aos="fade-right">
+                        <img src="https://images.unsplash.com/photo-1599307897258-a72611e93a74?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format=fit&crop&w=1470&q=80" 
                             alt="Crianças aprendendo violino" 
                             class="rounded-lg shadow-xl w-full h-auto">
                     </div>
-                    <div class="md:w-1/2">
+                    <div class="md:w-1/2" data-aos="fade-left">
                         <p class="text-gray-700 dark:text-gray-300 mb-4">
                             O nosso projeto, em parceria com a Igreja Luterana, tem transformado vidas por meio da música, da partilha e da inclusão. Com o talento e dedicação do nosso professor — que conduz as aulas com excelência e sensibilidade —, o projeto vem crescendo e alcançando cada vez mais pessoas da comunidade.
                         </p>
                         <p class="text-gray-700 dark:text-gray-300 mb-4">
                             Agora, com o apoio de novos colaboradores, queremos dar um passo ainda maior. Com o objetivo de ampliar nosso impacto social, estamos iniciando uma nova fase do projeto, com aulas acessíveis, apresentações em missas e mais oportunidades para todos.
                         </p>
-                        <p class="text-gray-700 dark:text-gray-300">
-                            Essa é mais do que uma aula de música. É um movimento que une fé, arte e juventude em torno de um propósito maior: fazer da música um caminho de transformação.
-                        </p>
                     </div>
-                </div>
-                
-                <div class="bg-amber-50 dark:bg-amber-900/20 p-8 rounded-lg border-l-4 border-amber-600">
-                    <h3 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">Nossa Proposta</h3>
-                    <p class="text-gray-700 dark:text-gray-300 mb-4">
-                        A proposta é simples: oferecer aulas introdutórias gratuitas para despertar o interesse de novos alunos e, a partir disso, seguir com encontros semanais a um valor simbólico — dividindo os recursos de forma justa entre professor, organização e apoio ao projeto.
-                    </p>
-                    <p class="text-gray-700 dark:text-gray-300">
-                        Além disso, incentivamos os alunos a se apresentarem nas celebrações da igreja, como forma de valorizar seu aprendizado, desenvolver sua autoconfiança e estreitar os laços com a comunidade que tanto nos apoia.
-                    </p>
-                </div>
-                
-                <div class="text-center mt-12">
-                    <p class="text-xl font-medium text-gray-800 dark:text-white mb-4">
-                        Se você deseja participar, apoiar ou indicar alguém, entre em contato conosco.
-                    </p>
-                    <p class="text-lg text-gray-700 dark:text-gray-300">
-                        Vamos juntos ampliar as vozes e os sonhos que o nosso projeto já vem ajudando a construir.
-                    </p>
                 </div>
             </div>
         </section>
 
-        <!-- Project Section -->
+        <!-- (As seções #project, #evolucao, etc. podem ter os atributos `data-aos` adicionados para animações) -->
+        <!-- Por exemplo: -->
         <section class="py-16 bg-gray-50 dark:bg-gray-900" id="project">
             <div class="container mx-auto px-4">
-                <div class="max-w-4xl mx-auto text-center mb-12">
+                <div class="max-w-4xl mx-auto text-center mb-12" data-aos="fade-up">
                     <h2 class="text-3xl font-bold text-gray-800 dark:text-white mb-6">O Projeto</h2>
                     <div class="w-24 h-1 bg-amber-600 mx-auto mb-8"></div>
                 </div>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-                    <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg">
-                        <div class="flex items-center mb-4">
-                            <div class="bg-amber-600 text-white p-3 rounded-full mr-4">
-                                <i class="fas fa-graduation-cap text-xl"></i>
-                            </div>
-                            <h3 class="text-xl font-bold text-gray-800 dark:text-white">Aulas Acessíveis</h3>
-                        </div>
-                        <p class="text-gray-600 dark:text-gray-400">
-                            Oferecemos aulas introdutórias gratuitas para todos os interessados. Após o período inicial, as aulas continuam com um valor simbólico que é dividido de forma justa entre professor, organização e manutenção do projeto.
-                        </p>
+                    <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg" data-aos="fade-up" data-aos-delay="100">
+                        <!-- ... conteúdo ... -->
                     </div>
-                    
-                    <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg">
-                        <div class="flex items-center mb-4">
-                            <div class="bg-amber-600 text-white p-3 rounded-full mr-4">
-                                <i class="fas fa-users text-xl"></i>
-                            </div>
-                            <h3 class="text-xl font-bold text-gray-800 dark:text-white">Comunidade Musical</h3>
-                        </div>
-                        <p class="text-gray-600 dark:text-gray-400">
-                            Criamos um espaço acolhedor onde alunos de todos os níveis podem aprender, compartilhar e crescer juntos. A música se torna um elo entre pessoas de diferentes realidades.
-                        </p>
+                    <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg" data-aos="fade-up" data-aos-delay="200">
+                        <!-- ... conteúdo ... -->
                     </div>
-                    
-                    <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg">
-                        <div class="flex items-center mb-4">
-                            <div class="bg-amber-600 text-white p-3 rounded-full mr-4">
-                                <i class="fas fa-church text-xl"></i>
-                            </div>
-                            <h3 class="text-xl font-bold text-gray-800 dark:text-white">Apresentações</h3>
-                        </div>
-                        <p class="text-gray-600 dark:text-gray-400">
-                            Incentivamos os alunos a se apresentarem nas celebrações da igreja, desenvolvendo autoconfiança e compartilhando seu progresso com a comunidade que os apoia.
-                        </p>
-                    </div>
-                    
-                    <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg">
-                        <div class="flex items-center mb-4">
-                            <div class="bg-amber-600 text-white p-3 rounded-full mr-4">
-                                <i class="fas fa-heart text-xl"></i>
-                            </div>
-                            <h3 class="text-xl font-bold text-gray-800 dark:text-white">Transformação Social</h3>
-                        </div>
-                        <p class="text-gray-600 dark:text-gray-400">
-                            Acreditamos no poder transformador da música. Através do violino, ajudamos jovens a desenvolver disciplina, autoestima e novas perspectivas para o futuro.
-                        </p>
-                    </div>
-                </div>
-                
-                <div class="bg-amber-50 dark:bg-amber-900/20 rounded-lg p-8 text-center">
-                    <h3 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">Como Participar?</h3>
-                    <p class="text-gray-700 dark:text-gray-300 mb-6 max-w-2xl mx-auto">
-                        Se você tem interesse em aprender violino ou conhece alguém que possa se beneficiar do projeto, entre em contato conosco. As inscrições estão sempre abertas para novos alunos!
-                    </p>
-                    <a href="#contact" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300">
-                        Quero Participar
-                    </a>
+                    <!-- Adicione data-aos para os outros cards também -->
                 </div>
             </div>
         </section>
 
-        <!-- Evolution Section -->
-        <section class="py-16 bg-white dark:bg-gray-900" id="evolucao">
+
+        <!-- ####################################################### -->
+        <!-- SEÇÃO DE PARTITURAS REFORMULADA E INTERATIVA -->
+        <!-- ####################################################### -->
+        <section class="py-16 bg-gray-100 dark:bg-gray-900" id="partituras">
             <div class="container mx-auto px-4">
-                <div class="max-w-4xl mx-auto text-center mb-12">
-                    <h2 class="text-3xl font-bold text-gray-800 dark:text-white mb-6">Como o Projeto Funciona</h2>
-                    <p class="text-xl text-gray-600 dark:text-gray-400 mb-6">Um modelo sustentável para a música e a comunidade</p>
-                    <div class="w-24 h-1 bg-amber-600 mx-auto mb-8"></div>
-                </div>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="bg-gray-100 dark:bg-gray-800 p-8 rounded-lg shadow-lg">
-                        <div class="flex items-center mb-4">
-                            <div class="bg-amber-600 text-white p-3 rounded-full mr-4">
-                                <i class="fas fa-bullhorn text-xl"></i>
-                            </div>
-                            <h3 class="text-xl font-bold text-gray-800 dark:text-white">Fase 1: Divulgação Gratuita</h3>
-                        </div>
-                        <p class="text-gray-600 dark:text-gray-400">
-                            Oferecemos 1 ou 2 aulas experimentais gratuitas para novos alunos. É uma forma de apresentar o projeto e a qualidade do ensino, captando interessados sem nenhum custo inicial para as famílias.
-                        </p>
-                    </div>
-
-                    <div class="bg-gray-100 dark:bg-gray-800 p-8 rounded-lg shadow-lg">
-                        <div class="flex items-center mb-4">
-                            <div class="bg-amber-600 text-white p-3 rounded-full mr-4">
-                                <i class="fas fa-coins text-xl"></i>
-                            </div>
-                            <h3 class="text-xl font-bold text-gray-800 dark:text-white">Fase 2: Valor Simbólico</h3>
-                        </div>
-                        <p class="text-gray-600 dark:text-gray-400">
-                            Após as aulas gratuitas, os alunos que desejam continuar contribuem com um valor simbólico por aula (ex: R$ 20). Este valor acessível garante a permanência dos alunos e a sustentabilidade do projeto.
-                        </p>
-                    </div>
-                    
-                    <div class="bg-gray-100 dark:bg-gray-800 p-8 rounded-lg shadow-lg">
-                        <div class="flex items-center mb-4">
-                            <div class="bg-amber-600 text-white p-3 rounded-full mr-4">
-                                <i class="fas fa-pie-chart text-xl"></i>
-                            </div>
-                            <h3 class="text-xl font-bold text-gray-800 dark:text-white">Divisão Justa dos Recursos</h3>
-                        </div>
-                        <p class="text-gray-600 dark:text-gray-400">
-                            O valor arrecadado é dividido de forma transparente: 50% para o professor, 30% para a organização do projeto e 20% como contribuição para o caixa da igreja/manutenção do espaço.
-                        </p>
-                    </div>
-
-                    <div class="bg-gray-100 dark:bg-gray-800 p-8 rounded-lg shadow-lg">
-                        <div class="flex items-center mb-4">
-                            <div class="bg-amber-600 text-white p-3 rounded-full mr-4">
-                                <i class="fas fa-church text-xl"></i>
-                            </div>
-                            <h3 class="text-xl font-bold text-gray-800 dark:text-white">Apresentações na Igreja</h3>
-                        </div>
-                        <p class="text-gray-600 dark:text-gray-400">
-                            Como forma de agradecimento e prática, os alunos se apresentam periodicamente nas missas. Isso serve como uma vitrine para o projeto, valoriza o esforço dos estudantes e fortalece os laços com a comunidade.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Partituras Section -->
-        <section class="py-16 bg-gray-50 dark:bg-gray-900" id="partituras">
-            <div class="container mx-auto px-4">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl font-bold text-gray-800 dark:text-white mb-4">Partituras para Estudo</h2>
-                    <p class="text-xl text-gray-600 dark:text-gray-400">Material de apoio para sua jornada musical</p>
+                <div class="text-center mb-12" data-aos="fade-up">
+                    <h2 class="text-3xl font-bold text-gray-800 dark:text-white mb-4">Partituras Interativas</h2>
+                    <p class="text-xl text-gray-600 dark:text-gray-400">Estude, ouça e baixe o material de apoio</p>
                     <div class="w-24 h-1 bg-amber-600 mx-auto"></div>
                 </div>
 
-                <div class="max-w-3xl mx-auto">
-                    <!-- Nível Iniciante -->
-                    <div class="mb-10">
-                        <h3 class="text-2xl font-bold text-gray-800 dark:text-white mb-4 border-b-2 border-amber-600 pb-2">Nível Iniciante</h3>
-                        <div class="space-y-4">
-                            <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md flex justify-between items-center">
-                                <div><i class="fas fa-music text-amber-600 mr-3"></i><span>Exercícios de Cordas Soltas</span></div>
-                                <a href="#" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-2 px-4 rounded-full transition duration-300"><i class="fas fa-file-pdf mr-2"></i>Baixar PDF</a>
+                <!-- Filtro de Tags (Visual) -->
+                <div class="flex justify-center space-x-2 mb-12" data-aos="fade-up" data-aos-delay="100">
+                    <button class="bg-amber-600 text-white py-2 px-4 rounded-full">Todos</button>
+                    <button class="bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 py-2 px-4 rounded-full hover:bg-amber-100 dark:hover:bg-gray-700">Iniciante</button>
+                    <button class="bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 py-2 px-4 rounded-full hover:bg-amber-100 dark:hover:bg-gray-700">Intermediário</button>
+                    <button class="bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 py-2 px-4 rounded-full hover:bg-amber-100 dark:hover:bg-gray-700">Avançado</button>
+                </div>
+                
+                <!-- Grid de Partituras -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    
+                    <!-- Card de Partitura 1: Brilha, Brilha Estrelinha -->
+                    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden flex flex-col" data-aos="fade-up" data-aos-delay="200">
+                        <!-- Área para o visualizador interativo (VexFlow) -->
+                        <div class="bg-gray-200 dark:bg-gray-700 p-4 h-48 flex items-center justify-center">
+                            <img src="https://i.ibb.co/L5B06dJ/score-placeholder.png" alt="Visualizador de partitura" class="h-full object-contain">
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col">
+                            <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-2">Brilha, Brilha Estrelinha</h3>
+                            <div class="flex space-x-2 mb-4">
+                                <span class="text-xs font-semibold bg-green-200 text-green-800 px-2 py-1 rounded-full">Iniciante</span>
+                                <span class="text-xs font-semibold bg-blue-200 text-blue-800 px-2 py-1 rounded-full">Didático</span>
                             </div>
-                            <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md flex justify-between items-center">
-                                <div><i class="fas fa-music text-amber-600 mr-3"></i><span>Brilha, Brilha Estrelinha (Simplificada)</span></div>
-                                <a href="#" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-2 px-4 rounded-full transition duration-300"><i class="fas fa-file-pdf mr-2"></i>Baixar PDF</a>
+                            <div class="mt-auto space-y-3">
+                                <button class="w-full flex items-center justify-center bg-gray-200 dark:bg-gray-600 hover:bg-gray-300 dark:hover:bg-gray-500 text-gray-700 dark:text-gray-200 font-bold py-2 px-4 rounded-full transition duration-300">
+                                    <i class="fas fa-play mr-2"></i> Ouvir a Partitura
+                                </button>
+                                <button class="w-full flex items-center justify-center bg-gray-200 dark:bg-gray-600 hover:bg-gray-300 dark:hover:bg-gray-500 text-gray-700 dark:text-gray-200 font-bold py-2 px-4 rounded-full transition duration-300">
+                                    <i class="fas fa-chalkboard-teacher mr-2"></i> Modo Estudo
+                                </button>
+                                <a href="#" class="block text-center w-full bg-amber-600 hover:bg-amber-700 text-white font-bold py-2 px-4 rounded-full transition duration-300">
+                                    <i class="fas fa-download mr-2"></i> Baixar PDF
+                                </a>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Nível Intermediário -->
-                    <div class="mb-10">
-                        <h3 class="text-2xl font-bold text-gray-800 dark:text-white mb-4 border-b-2 border-amber-600 pb-2">Nível Intermediário</h3>
-                        <div class="space-y-4">
-                            <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md flex justify-between items-center">
-                                <div><i class="fas fa-music text-amber-600 mr-3"></i><span>Minueto em Sol Maior - J.S. Bach</span></div>
-                                <a href="#" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-2 px-4 rounded-full transition duration-300"><i class="fas fa-file-pdf mr-2"></i>Baixar PDF</a>
+                    <!-- Card de Partitura 2: Asa Branca -->
+                    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden flex flex-col" data-aos="fade-up" data-aos-delay="300">
+                        <div class="bg-gray-200 dark:bg-gray-700 p-4 h-48 flex items-center justify-center">
+                           <img src="https://i.ibb.co/L5B06dJ/score-placeholder.png" alt="Visualizador de partitura" class="h-full object-contain">
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col">
+                            <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-2">Asa Branca</h3>
+                            <div class="flex space-x-2 mb-4">
+                                <span class="text-xs font-semibold bg-yellow-200 text-yellow-800 px-2 py-1 rounded-full">Intermediário</span>
+                                <span class="text-xs font-semibold bg-red-200 text-red-800 px-2 py-1 rounded-full">MPB</span>
                             </div>
-                            <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md flex justify-between items-center">
-                                <div><i class="fas fa-music text-amber-600 mr-3"></i><span>Asa Branca - Luiz Gonzaga</span></div>
-                                <a href="#" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-2 px-4 rounded-full transition duration-300"><i class="fas fa-file-pdf mr-2"></i>Baixar PDF</a>
+                            <div class="mt-auto space-y-3">
+                                <button class="w-full flex items-center justify-center bg-gray-200 dark:bg-gray-600 hover:bg-gray-300 dark:hover:bg-gray-500 text-gray-700 dark:text-gray-200 font-bold py-2 px-4 rounded-full transition duration-300">
+                                    <i class="fas fa-play mr-2"></i> Ouvir a Partitura
+                                </button>
+                                <button class="w-full flex items-center justify-center bg-gray-200 dark:bg-gray-600 hover:bg-gray-300 dark:hover:bg-gray-500 text-gray-700 dark:text-gray-200 font-bold py-2 px-4 rounded-full transition duration-300">
+                                    <i class="fas fa-chalkboard-teacher mr-2"></i> Modo Estudo
+                                </button>
+                                <a href="#" class="block text-center w-full bg-amber-600 hover:bg-amber-700 text-white font-bold py-2 px-4 rounded-full transition duration-300">
+                                    <i class="fas fa-download mr-2"></i> Baixar PDF
+                                </a>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Nível Avançado -->
-                    <div>
-                        <h3 class="text-2xl font-bold text-gray-800 dark:text-white mb-4 border-b-2 border-amber-600 pb-2">Nível Avançado</h3>
-                        <div class="space-y-4">
-                            <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md flex justify-between items-center">
-                            <div><i class="fas fa-music text-amber-600 mr-3"></i><span>Concerto para Violino em Lá menor - Vivaldi</span></div>
-                                <a href="#" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-2 px-4 rounded-full transition duration-300"><i class="fas fa-file-pdf mr-2"></i>Baixar PDF</a>
+                    <!-- Card de Partitura 3: Vivaldi -->
+                    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden flex flex-col" data-aos="fade-up" data-aos-delay="400">
+                        <div class="bg-gray-200 dark:bg-gray-700 p-4 h-48 flex items-center justify-center">
+                           <img src="https://i.ibb.co/L5B06dJ/score-placeholder.png" alt="Visualizador de partitura" class="h-full object-contain">
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col">
+                            <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-2">Concerto em Lá menor</h3>
+                            <div class="flex space-x-2 mb-4">
+                                <span class="text-xs font-semibold bg-purple-200 text-purple-800 px-2 py-1 rounded-full">Avançado</span>
+                                <span class="text-xs font-semibold bg-gray-300 text-gray-800 px-2 py-1 rounded-full">Clássico</span>
+                            </div>
+                            <div class="mt-auto space-y-3">
+                                <button class="w-full flex items-center justify-center bg-gray-200 dark:bg-gray-600 hover:bg-gray-300 dark:hover:bg-gray-500 text-gray-700 dark:text-gray-200 font-bold py-2 px-4 rounded-full transition duration-300">
+                                    <i class="fas fa-play mr-2"></i> Ouvir a Partitura
+                                </button>
+                                <button class="w-full flex items-center justify-center bg-gray-200 dark:bg-gray-600 hover:bg-gray-300 dark:hover:bg-gray-500 text-gray-700 dark:text-gray-200 font-bold py-2 px-4 rounded-full transition duration-300">
+                                    <i class="fas fa-chalkboard-teacher mr-2"></i> Modo Estudo
+                                </button>
+                                <a href="#" class="block text-center w-full bg-amber-600 hover:bg-amber-700 text-white font-bold py-2 px-4 rounded-full transition duration-300">
+                                    <i class="fas fa-download mr-2"></i> Baixar PDF
+                                </a>
                             </div>
                         </div>
+                    </div>
+                </div>
+
+                <!-- Botão para Contribuir -->
+                <div class="text-center mt-16" data-aos="fade-up">
+                    <div class="bg-amber-100 dark:bg-amber-900/30 border-l-4 border-amber-500 text-amber-800 dark:text-amber-200 p-6 rounded-lg inline-block">
+                        <h4 class="font-bold text-lg mb-2">Tem uma partitura para compartilhar?</h4>
+                        <p class="mb-4">Ajude nossa comunidade a crescer. Envie sua partitura para análise.</p>
+                        <a href="#contact" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-2 px-6 rounded-full transition duration-300">
+                            Contribuir Agora
+                        </a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Teachers Section -->
+        <!-- O restante do seu site (Teachers, Church, Contact, Footer) permanece aqui... -->
+        <!-- Adicione `data-aos` a eles também para um efeito consistente! -->
+
+        <!-- Exemplo na seção de Professores -->
         <section class="py-16 bg-white dark:bg-gray-900" id="teachers">
             <div class="container mx-auto px-4">
-                <div class="text-center mb-12">
+                <div class="text-center mb-12" data-aos="fade-up">
                     <h2 class="text-3xl font-bold text-gray-800 dark:text-white mb-4">Nossos Professores</h2>
                     <div class="w-24 h-1 bg-amber-600 mx-auto"></div>
                 </div>
                 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <!-- Professor Hélio -->
-                    <div class="bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden shadow-md teacher-card">
-                        <img src="https://images.unsplash.com/photo-1551024354-91a3f6954278?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
-                            alt="Professor Hélio" 
-                            class="w-full h-64 object-cover">
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-2">Hélio Martins</h3>
-                            <p class="text-amber-600 font-medium mb-4">Violino Clássico</p>
-                            <p class="text-gray-600 dark:text-gray-400 mb-4">
-                                Com mais de 15 anos de experiência, o professor Hélio traz uma abordagem técnica e apaixonada ao ensino do violino.
-                            </p>
-                            <div class="flex space-x-4">
-                                <a href="#" class="text-gray-500 hover:text-amber-600"><i class="fab fa-facebook-f"></i></a>
-                                <a href="#" class="text-gray-500 hover:text-amber-600"><i class="fab fa-instagram"></i></a>
-                                <a href="#" class="text-gray-500 hover:text-amber-600"><i class="fas fa-envelope"></i></a>
-                            </div>
-                        </div>
+                    <!-- Usei zoom-in aqui para variar -->
+                    <div class="bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden shadow-md teacher-card" data-aos="zoom-in" data-aos-delay="100">
+                        <!-- ... conteúdo do card do professor ... -->
                     </div>
-                    
-                    <!-- Professor Emanuel -->
-                    <div class="bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden shadow-md teacher-card">
-                        <img src="https://images.unsplash.com/photo-1542652694-469b45a30898?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
-                            alt="Professor Emanuel" 
-                            class="w-full h-64 object-cover">
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-2">Emanuel Silva</h3>
-                            <p class="text-amber-600 font-medium mb-4">Violino Popular</p>
-                            <p class="text-gray-600 dark:text-gray-400 mb-4">
-                                Especialista em música popular brasileira, Emanuel ensina técnicas versáteis para diversos estilos musicais.
-                            </p>
-                            <div class="flex space-x-4">
-                                <a href="#" class="text-gray-500 hover:text-amber-600"><i class="fab fa-facebook-f"></i></a>
-                                <a href="#" class="text-gray-500 hover:text-amber-600"><i class="fab fa-instagram"></i></a>
-                                <a href="#" class="text-gray-500 hover:text-amber-600"><i class="fas fa-envelope"></i></a>
-                            </div>
-                        </div>
+                    <div class="bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden shadow-md teacher-card" data-aos="zoom-in" data-aos-delay="200">
+                        <!-- ... conteúdo do card do professor ... -->
                     </div>
-                    
-                    <!-- Projeto -->
-                    <div class="bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden shadow-md teacher-card">
-                        <img src="https://images.unsplash.com/photo-1581898799432-c73ac706240d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
-                            alt="Projeto de Música" 
-                            class="w-full h-64 object-cover">
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-2">Nosso Projeto</h3>
-                            <p class="text-amber-600 font-medium mb-4">Inclusão Musical</p>
-                            <p class="text-gray-600 dark:text-gray-400 mb-4">
-                                Nosso projeto principal que une educação musical de qualidade com acessibilidade e transformação social.
-                            </p>
-                            <div class="flex space-x-4">
-                                <a href="#" class="text-gray-500 hover:text-amber-600"><i class="fab fa-facebook-f"></i></a>
-                                <a href="#" class="text-gray-500 hover:text-amber-600"><i class="fab fa-instagram"></i></a>
-                                <a href="#" class="text-gray-500 hover:text-amber-600"><i class="fas fa-globe"></i></a>
-                            </div>
-                        </div>
+                    <div class="bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden shadow-md teacher-card" data-aos="zoom-in" data-aos-delay="300">
+                        <!-- ... conteúdo do card do professor ... -->
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Church Section -->
-        <section class="py-16 bg-gray-50 dark:bg-gray-900" id="church">
-            <div class="container mx-auto px-4">
-                <div class="max-w-4xl mx-auto text-center mb-12">
-                    <h2 class="text-3xl font-bold text-gray-800 dark:text-white mb-6">Igreja Luterana</h2>
-                    <p class="text-xl text-gray-600 dark:text-gray-400">Nossa Parceria que Transforma Vidas</p>
-                    <div class="w-24 h-1 bg-amber-600 mx-auto mb-8"></div>
-                </div>
-                
-                <div class="flex flex-col md:flex-row items-center mb-16">
-                    <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
-                        <img src="https://images.unsplash.com/photo-1507692049682-a25121b6a71e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
-                            alt="Igreja parceira do projeto" 
-                            class="rounded-lg shadow-xl w-full h-auto">
-                    </div>
-                    <div class="md:w-1/2">
-                        <h3 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">Apoio Fundamental</h3>
-                        <p class="text-gray-700 dark:text-gray-300 mb-4">
-                            A Igreja Luterana tem sido um pilar essencial para o desenvolvimento do nosso projeto, oferecendo não apenas o espaço físico para as aulas e apresentações, mas também o suporte espiritual e comunitário que torna essa iniciativa tão especial.
-                        </p>
-                        <p class="text-gray-700 dark:text-gray-300">
-                            Através dessa parceria, conseguimos unir fé, arte e educação, criando um ambiente onde jovens podem desenvolver seus talentos musicais enquanto fortalecem seus valores e conexão com a comunidade.
-                        </p>
-                    </div>
-                </div>
-                
-                <div class="text-center mb-12">
-                    <h3 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">Nossos Apoiadores</h3>
-                    <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-8">
-                        Conheça algumas das pessoas e organizações que tornam o projeto possível através de seu apoio e contribuição.
-                    </p>
-                </div>
-                
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 church-contributors">
-                    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md text-center contributor-card">
-                        <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-gray-200 overflow-hidden">
-                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Contribuidor" class="w-full h-full object-cover">
-                        </div>
-                        <h4 class="font-bold text-gray-800 dark:text-white">Ana Lúcia</h4>
-                        <p class="text-sm text-amber-600">Patrocinadora</p>
-                    </div>
-                    
-                    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md text-center contributor-card">
-                        <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-gray-200 overflow-hidden">
-                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Contribuidor" class="w-full h-full object-cover">
-                        </div>
-                        <h4 class="font-bold text-gray-800 dark:text-white">Carlos Eduardo</h4>
-                        <p class="text-sm text-amber-600">Voluntário</p>
-                    </div>
-                    
-                    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md text-center contributor-card">
-                        <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-gray-200 overflow-hidden">
-                            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Contribuidor" class="w-full h-full object-cover">
-                        </div>
-                        <h4 class="font-bold text-gray-800 dark:text-white">Mariana</h4>
-                        <p class="text-sm text-amber-600">Coordenadora</p>
-                    </div>
-                    
-                    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md text-center contributor-card">
-                        <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-gray-200 overflow-hidden">
-                            <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Contribuidor" class="w-full h-full object-cover">
-                        </div>
-                        <h4 class="font-bold text-gray-800 dark:text-white">Pastor João</h4>
-                        <p class="text-sm text-amber-600">Líder Espiritual</p>
-                    </div>
-                </div>
-                
-                <div class="mt-12 text-center">
-                    <h3 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">Quer Apoiar o Projeto?</h3>
-                    <p class="text-gray-600 dark:text-gray-400 mb-6 max-w-2xl mx-auto">
-                        Se você ou sua organização desejam contribuir para o crescimento do projeto, existem várias formas de ajudar.
-                    </p>
-                    <a href="#contact" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300">
-                        Quero Apoiar
-                    </a>
-                </div>
-            </div>
-        </section>
+        <!-- (...continue com as outras seções e o footer) -->
+        <!-- (O restante do seu HTML a partir da seção Church) -->
 
-        <!-- Contact Section -->
-        <section class="py-16 bg-white dark:bg-gray-900" id="contact">
-            <div class="container mx-auto px-4">
-                <div class="max-w-4xl mx-auto text-center mb-12">
-                    <h2 class="text-3xl font-bold text-gray-800 dark:text-white mb-6">Entre em Contato</h2>
-                    <p class="text-xl text-gray-600 dark:text-gray-400">Tire suas dúvidas ou agende uma aula experimental</p>
-                    <div class="w-24 h-1 bg-amber-600 mx-auto mb-8"></div>
-                </div>
-                
-                <div class="flex flex-col md:flex-row">
-                    <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
-                        <form class="space-y-6">
-                            <div>
-                                <label for="name" class="block text-gray-700 dark:text-gray-300 font-medium mb-2">Seu Nome</label>
-                                <input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-amber-600 focus:border-transparent bg-white dark:bg-gray-800">
-                            </div>
-                            
-                            <div>
-                                <label for="email" class="block text-gray-700 dark:text-gray-300 font-medium mb-2">Seu Email</label>
-                                <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-amber-600 focus:border-transparent bg-white dark:bg-gray-800">
-                            </div>
-                            
-                            <div>
-                                <label for="message" class="block text-gray-700 dark:text-gray-300 font-medium mb-2">Sua Mensagem</label>
-                                <textarea id="message" rows="5" class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-amber-600 focus:border-transparent bg-white dark:bg-gray-800"></textarea>
-                            </div>
-                            
-                            <button type="submit" class="w-full bg-amber-600 hover:bg-amber-700 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300">
-                                Enviar Mensagem
-                            </button>
-                        </form>
-                    </div>
-                    
-                    <div class="md:w-1/2 md:pl-8">
-                        <div class="bg-gray-100 dark:bg-gray-800 p-8 rounded-lg h-full">
-                            <h3 class="text-2xl font-bold text-gray-800 dark:text-white mb-6">Informações de Contato</h3>
-                            
-                            <div class="flex items-start mb-6">
-                                <div class="bg-amber-600 text-white p-3 rounded-full mr-4"><i class="fas fa-map-marker-alt"></i></div>
-                                <div>
-                                    <h4 class="font-bold text-gray-800 dark:text-white">Endereço</h4>
-                                    <p class="text-gray-600 dark:text-gray-400">Rua da Música, 123 - Centro</p>
-                                    <p class="text-gray-600 dark:text-gray-400">São Paulo - SP</p>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-start mb-6">
-                                <div class="bg-amber-600 text-white p-3 rounded-full mr-4"><i class="fas fa-phone-alt"></i></div>
-                                <div>
-                                    <h4 class="font-bold text-gray-800 dark:text-white">Telefone</h4>
-                                    <p class="text-gray-600 dark:text-gray-400">(11) 1234-5678</p>
-                                    <p class="text-gray-600 dark:text-gray-400">WhatsApp: (11) 98765-4321</p>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-start mb-6">
-                                <div class="bg-amber-600 text-white p-3 rounded-full mr-4"><i class="fas fa-envelope"></i></div>
-                                <div>
-                                    <h4 class="font-bold text-gray-800 dark:text-white">Email</h4>
-                                    <p class="text-gray-600 dark:text-gray-400">contato@seuprojeto.com</p>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-start">
-                                <div class="bg-amber-600 text-white p-3 rounded-full mr-4"><i class="fas fa-clock"></i></div>
-                                <div>
-                                    <h4 class="font-bold text-gray-800 dark:text-white">Horário de Atendimento</h4>
-                                    <p class="text-gray-600 dark:text-gray-400">Segunda a Sexta: 9h às 18h</p>
-                                    <p class="text-gray-600 dark:text-gray-400">Sábado: 9h às 12h</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
     </main>
+    
+    <!-- (Seu footer aqui) -->
 
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-12">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row justify-between">
-                <div class="mb-8 md:mb-0">
-                    <div class="flex items-center mb-4">
-                        <i class="fas fa-music text-3xl text-amber-600 mr-2"></i>
-                        <h3 class="text-2xl font-bold"></h3>
-                    </div>
-                    <p class="text-gray-400 max-w-xs">
-                        Transformando vidas através da música.
-                    </p>
-                </div>
-                
-                <div class="mb-8 md:mb-0">
-                    <h4 class="text-lg font-bold mb-4">Links Rápidos</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#home" class="text-gray-400 hover:text-amber-600">Início</a></li>
-                        <li><a href="#project" class="text-gray-400 hover:text-amber-600">O Projeto</a></li>
-                        <li><a href="#evolucao" class="text-gray-400 hover:text-amber-600">Evolução</a></li>
-                        <li><a href="#partituras" class="text-gray-400 hover:text-amber-600">Partituras</a></li>
-                        <li><a href="#teachers" class="text-gray-400 hover:text-amber-600">Professores</a></li>
-                        <li><a href="#church" class="text-gray-400 hover:text-amber-600">Igreja</a></li>
-                        <li><a href="#contact" class="text-gray-400 hover:text-amber-600">Contato</a></li>
-                    </ul>
-                </div>
-                
-                <div class="mb-8 md:mb-0">
-                    <h4 class="text-lg font-bold mb-4">Redes Sociais</h4>
-                    <div class="flex space-x-4">
-                        <a href="#" class="bg-gray-700 hover:bg-amber-600 text-white p-3 rounded-full transition duration-300"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="bg-gray-700 hover:bg-amber-600 text-white p-3 rounded-full transition duration-300"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="bg-gray-700 hover:bg-amber-600 text-white p-3 rounded-full transition duration-300"><i class="fab fa-youtube"></i></a>
-                        <a href="#" class="bg-gray-700 hover:bg-amber-600 text-white p-3 rounded-full transition duration-300"><i class="fab fa-whatsapp"></i></a>
-                    </div>
-                </div>
-                
-                <div>
-                    <h4 class="text-lg font-bold mb-4">Newsletter</h4>
-                    <p class="text-gray-400 mb-4">
-                        Receba novidades sobre o projeto em seu email.
-                    </p>
-                    <div class="flex">
-                        <input type="email" placeholder="Seu email" class="px-4 py-3 rounded-l-lg focus:outline-none text-gray-800 w-full">
-                        <button class="bg-amber-600 hover:bg-amber-700 text-white px-4 rounded-r-lg"><i class="fas fa-paper-plane"></i></button>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="border-t border-gray-700 mt-12 pt-8 text-center text-gray-400">
-                <p>© 2023. Todos os direitos reservados.</p>
-            </div>
-        </div>
-    </footer>
-
+    <!-- Adicionado: Script da biblioteca AOS.js e sua inicialização -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
+        // Inicializa a biblioteca de animações
+        AOS.init({
+            duration: 800, // Duração da animação em ms
+            once: true,    // Animação acontece apenas uma vez
+            offset: 50,    // "Gatilho" da animação um pouco antes do elemento aparecer
+        });
+
         document.addEventListener('DOMContentLoaded', function() {
             // --- LÓGICA DO MENU MOBILE ---
             const mobileMenuBtn = document.getElementById('mobile-menu-btn');
@@ -649,15 +372,11 @@
                 e.stopPropagation();
                 mobileMenu.classList.toggle('hidden');
             });
-
-            // Fecha o menu se clicar em um link
             mobileMenu.addEventListener('click', (e) => {
                 if (e.target.tagName === 'A') {
                     mobileMenu.classList.add('hidden');
                 }
             });
-            
-            // Fecha o menu se clicar fora
             document.addEventListener('click', function(event) {
                 if (!mobileMenu.contains(event.target) && !mobileMenuBtn.contains(event.target)) {
                     mobileMenu.classList.add('hidden');
@@ -669,7 +388,6 @@
             const themeToggleSun = document.getElementById('theme-toggle-sun');
             const themeToggleMoon = document.getElementById('theme-toggle-moon');
 
-            // Verifica o tema salvo ou a preferência do sistema
             if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
                 document.documentElement.classList.add('dark');
                 themeToggleSun.classList.add('hidden');
@@ -679,12 +397,8 @@
                 themeToggleSun.classList.remove('hidden');
                 themeToggleMoon.classList.add('hidden');
             }
-
             themeToggleBtn.addEventListener('click', function() {
-                // Alterna o tema
                 document.documentElement.classList.toggle('dark');
-
-                // Atualiza o localStorage e o ícone
                 if (document.documentElement.classList.contains('dark')) {
                     localStorage.setItem('theme', 'dark');
                     themeToggleSun.classList.add('hidden');
@@ -696,40 +410,30 @@
                 }
             });
 
-
             // --- LÓGICA DE NAVEGAÇÃO ATIVA NA ROLAGEM ---
             const sections = document.querySelectorAll('main section');
             const navLinks = document.querySelectorAll('.nav-link');
-
             const observerOptions = {
-                root: null, // observa em relação ao viewport
+                root: null,
                 rootMargin: '0px',
-                threshold: 0.5 // ativa quando 50% da seção estiver visível
+                threshold: 0.5
             };
-
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         const id = entry.target.getAttribute('id');
-                        
-                        // Remove a classe 'active' de todos os links
                         navLinks.forEach(link => {
                             link.classList.remove('active');
-                            // Garante que a cor padrão seja aplicada
                             link.classList.add('text-gray-700', 'dark:text-gray-300');
                         });
-
-                        // Adiciona a classe 'active' ao link correspondente
                         const activeLink = document.querySelector(`.nav-link[href="#${id}"]`);
                         if (activeLink) {
                             activeLink.classList.add('active');
-                            // Remove as cores padrão para que a 'active' prevaleça
                             activeLink.classList.remove('text-gray-700', 'dark:text-gray-300');
                         }
                     }
                 });
             }, observerOptions);
-
             sections.forEach(section => {
                 observer.observe(section);
             });
