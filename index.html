@@ -18,6 +18,7 @@
         body {
             background-color: #0f172a; /* Azul-escuro profundo */
             font-family: 'Inter', sans-serif;
+            color: #e2e8f0; /* slate-200 */
         }
         .liquid-glass {
             background: rgba(17, 24, 39, 0.5);
@@ -34,7 +35,7 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
         
-        /* NOVA PALETA DE COR AZUL VIBRANTE */
+        /* PALETA DE COR AZUL VIBRANTE COM ANIMAÇÃO */
         @keyframes vibrate-subtle {
             0% { transform: scale(1); text-shadow: 0 0 5px rgba(14, 165, 233, 0); }
             50% { transform: scale(1.01); text-shadow: 0 0 10px rgba(14, 165, 233, 0.5); }
@@ -52,6 +53,7 @@
         
         .button-blue {
             background-color: #0ea5e9;
+            color: #ffffff;
             transition: all 0.3s ease;
             animation: vibrate-subtle 5s ease-in-out infinite;
         }
@@ -96,16 +98,11 @@
         }
 
         /* Estilo para a vitrine de partituras */
-        .hide-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-        .hide-scrollbar {
-            -ms-overflow-style: none;  /* IE and Edge */
-            scrollbar-width: none;  /* Firefox */
-        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
-<body class="text-gray-200">
+<body>
     
     <!-- Cabeçalho -->
     <header class="liquid-glass-header fixed w-full z-50 top-0">
@@ -115,10 +112,11 @@
                 <h1 class="text-xl font-bold text-white">Musikantiga</h1>
             </a>
             <nav class="hidden md:flex items-center space-x-8 text-sm font-medium">
-                <a href="#metodologia" class="text-gray-300 hover:text-sky-300 transition">Como Funciona</a>
-                <a href="#biblioteca" class="text-gray-300 hover:text-sky-300 transition">Biblioteca</a>
-                <a href="#teachers" class="text-gray-300 hover:text-sky-300 transition">Professores</a>
-                <a href="#contact" class="text-gray-300 hover:text-sky-300 transition">Contato</a>
+                <a href="#project" class="text-gray-300 hover:text-sky-300 transition nav-link">O Projeto</a>
+                <a href="#metodologia" class="text-gray-300 hover:text-sky-300 transition nav-link">Jornada Musical</a>
+                <a href="#biblioteca" class="text-gray-300 hover:text-sky-300 transition nav-link">Biblioteca</a>
+                <a href="#teachers" class="text-gray-300 hover:text-sky-300 transition nav-link">Professores</a>
+                <a href="#contact" class="text-gray-300 hover:text-sky-300 transition nav-link">Contato</a>
             </nav>
             <button class="md:hidden text-2xl focus:outline-none" id="menu-toggle">
                 <i class="fas fa-bars"></i>
@@ -126,7 +124,8 @@
         </div>
         <div id="mobile-menu" class="hidden md:hidden absolute w-full left-0 mt-0 py-4 liquid-glass-header border-t-0">
             <ul class="flex flex-col items-center space-y-4">
-                <li><a href="#metodologia" class="text-gray-300 hover:text-sky-300 transition nav-link">Como Funciona</a></li>
+                <li><a href="#project" class="text-gray-300 hover:text-sky-300 transition nav-link">O Projeto</a></li>
+                <li><a href="#metodologia" class="text-gray-300 hover:text-sky-300 transition nav-link">Jornada Musical</a></li>
                 <li><a href="#biblioteca" class="text-gray-300 hover:text-sky-300 transition nav-link">Biblioteca</a></li>
                 <li><a href="#teachers" class="text-gray-300 hover:text-sky-300 transition nav-link">Professores</a></li>
                 <li><a href="#contact" class="text-gray-300 hover:text-sky-300 transition nav-link">Contato</a></li>
@@ -144,49 +143,119 @@
                 <h1 class="text-4xl md:text-6xl font-extrabold mb-6 highlight-text">Aprenda Violino e Teoria Musical</h1>
                 <p class="text-lg md:text-xl text-gray-300 mb-10 max-w-2xl mx-auto">Desvende o universo do violino dominando a teoria musical e a leitura de partituras. Nosso método combina atividades práticas e dinâmicas, tornando o aprendizado uma experiência acessível e gratificante para todas as idades.</p>
                 <div class="flex flex-col sm:flex-row justify-center gap-4">
-                    <a href="#contact" class="button-blue text-white px-8 py-3 rounded-full font-bold">
+                    <a href="#contact" class="button-blue px-8 py-3 rounded-full font-bold">
                         Comece Sua Jornada
                     </a>
-                    <a href="#metodologia" class="button-outline-blue px-8 py-3 rounded-full font-bold">
+                    <a href="#project" class="button-outline-blue px-8 py-3 rounded-full font-bold">
                         Saiba Mais
                     </a>
                 </div>
             </div>
-
-            <a href="#metodologia" class="absolute bottom-10 z-10 scroll-down-icon">
+            <a href="#project" class="absolute bottom-10 z-10 scroll-down-icon">
                 <i class="fas fa-chevron-down text-2xl text-gray-500"></i>
             </a>
         </section>
-
-        <!-- Como Funciona -->
-        <section id="metodologia" class="py-24">
+        
+        <!-- Sobre o Projeto -->
+        <section id="project" class="py-24">
             <div class="container mx-auto px-4">
                 <div class="text-center mb-16" data-aos="fade-up">
-                    <h2 class="section-title highlight-text">Como o Projeto Funciona</h2>
-                    <p class="section-subtitle">Nossa jornada musical é estruturada para acompanhar sua evolução. Guiamos você por dois estágios fundamentais: <strong class="text-white">Iniciante (1–2 anos)</strong>, focado na construção de uma base sólida, e <strong class="text-white">Intermediário (3–4 anos)</strong>, onde aprimoramos sua arte e expressão.</p>
+                    <h2 class="section-title highlight-text">Sobre Nosso Projeto</h2>
+                    <p class="section-subtitle">Mais do que aulas de música: um movimento de inclusão, arte e comunidade.</p>
                 </div>
                 
-                <div class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-                    <!-- Nível Iniciante -->
-                    <div class="liquid-glass p-8" data-aos="fade-up">
-                        <h3 class="text-2xl font-bold mb-4 highlight-blue">Iniciante (1–2 anos)</h3>
-                        <ul class="space-y-4 text-gray-300">
-                            <li class="flex items-start"><i class="fas fa-check-circle highlight-blue mr-3 mt-1"></i><div><strong class="text-white">Aula de Descoberta:</strong> Agende sua primeira aula para sentir a magia do violino, sem compromissos.</div></li>
-                            <li class="flex items-start"><i class="fas fa-check-circle highlight-blue mr-3 mt-1"></i><div><strong class="text-white">Fundamentos Essenciais:</strong> Aprenda habilidades cruciais como postura, como segurar o arco, produção de som limpo e coordenação.</div></li>
-                            <li class="flex items-start"><i class="fas fa-check-circle highlight-blue mr-3 mt-1"></i><div><strong class="text-white">Método Suzuki:</strong> Utilizamos um dos métodos mais renomados do Brasil, referência no ensino musical infantil, para um desenvolvimento natural e intuitivo.</div></li>
-                             <li class="flex items-start"><i class="fas fa-check-circle highlight-blue mr-3 mt-1"></i><div><strong class="text-white">Primeiras Apresentações:</strong> Encorajamos você a se apresentar, um passo fundamental para construir confiança e celebrar seu progresso.</div></li>
-                            <li class="flex items-start"><i class="fas fa-check-circle highlight-blue mr-3 mt-1"></i><div><strong class="text-white">Apoio ao Projeto:</strong> Sua participação é viabilizada por uma contribuição consciente, que apoia o projeto Musikantiga e valoriza nossos professores.</div></li>
-                        </ul>
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div data-aos="fade-right" class="order-2 md:order-1">
+                        <div class="liquid-glass p-8 md:p-10">
+                            <h3 class="text-2xl font-bold mb-4 highlight-blue">Transformando Vidas Através da Música</h3>
+                            <p class="text-gray-300 mb-6">O projeto Musikantiga oferece um espaço acolhedor para o aprendizado do violino, unindo a excelência do ensino musical com o objetivo de fortalecer laços comunitários e promover o desenvolvimento pessoal e social.</p>
+                            <ul class="space-y-4">
+                                <li class="flex items-start"><i class="fas fa-check-circle highlight-blue mr-3 mt-1"></i><div><strong class="text-white">Aulas Acessíveis:</strong> Metodologia pensada para todos, com um modelo de contribuição que sustenta o projeto.</div></li>
+                                <li class="flex items-start"><i class="fas fa-check-circle highlight-blue mr-3 mt-1"></i><div><strong class="text-white">Comunidade Unida:</strong> Um ambiente para aprender, compartilhar e crescer com outros músicos.</div></li>
+                                <li class="flex items-start"><i class="fas fa-check-circle highlight-blue mr-3 mt-1"></i><div><strong class="text-white">Apresentações Inspiradoras:</strong> Oportunidades para se apresentar, ganhar confiança e celebrar o progresso.</div></li>
+                            </ul>
+                        </div>
                     </div>
-                    <!-- Nível Intermediário -->
-                    <div class="liquid-glass p-8" data-aos="fade-up" data-aos-delay="200">
-                        <h3 class="text-2xl font-bold mb-4 highlight-blue">Intermediário (3–4 anos)</h3>
-                        <ul class="space-y-4 text-gray-300">
-                            <li class="flex items-start"><i class="fas fa-rocket highlight-blue mr-3 mt-1"></i><div><strong class="text-white">Palcos e Festivais:</strong> Participe de recitais e festivais mais competitivos, ganhando valiosa experiência de palco.</div></li>
-                            <li class="flex items-start"><i class="fas fa-rocket highlight-blue mr-3 mt-1"></i><div><strong class="text-white">Técnica Avançada:</strong> Aprofunde-se no Método Suzuki e trabalhe com técnicas abrangentes de palco, incluindo expressão corporal.</div></li>
-                            <li class="flex items-start"><i class="fas fa-rocket highlight-blue mr-3 mt-1"></i><div><strong class="text-white">Teoria Musical Completa:</strong> Solidifique seu conhecimento com um currículo teórico quase completo, dominando a linguagem da música.</div></li>
-                             <li class="flex items-start"><i class="fas fa-star highlight-blue mr-3 mt-1"></i><div><strong class="text-white">Diferencial Revolucionário:</strong> Tenha acesso a mentorias exclusivas com músicos convidados e a oportunidade de participar de gravações em estúdio profissional.</div></li>
-                        </ul>
+                    <div data-aos="fade-left" class="order-1 md:order-2">
+                        <img src="https://images.unsplash.com/photo-1599307897258-a72611e93a74?auto=format&fit=crop&w=1470&q=80" alt="Crianças aprendendo violino" class="rounded-2xl shadow-2xl shadow-blue-900/20 w-full h-auto">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Como Funciona (VERSÃO LINHA DO TEMPO) -->
+        <section id="metodologia" class="py-24 bg-slate-900/50">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-20" data-aos="fade-up">
+                    <h2 class="section-title highlight-text">Sua Jornada Musical</h2>
+                    <p class="section-subtitle">Acompanhe a linha de evolução do nosso projeto, desde os primeiros acordes até o domínio do palco. Uma trajetória clara, dividida em estágios para o seu crescimento.</p>
+                </div>
+
+                <!-- Estrutura da Linha do Tempo -->
+                <div class="relative max-w-3xl mx-auto">
+                    <!-- A linha vertical -->
+                    <div class="absolute left-1/2 w-1 h-full bg-sky-900/50 transform -translate-x-1/2 rounded-full"></div>
+
+                    <!-- Estágio 1: Iniciante -->
+                    <div class="relative mb-16" data-aos="fade-right">
+                        <div class="absolute w-12 h-12 bg-slate-800 rounded-full left-1/2 transform -translate-x-1/2 flex items-center justify-center border-4 border-slate-700">
+                            <i class="fas fa-seedling text-xl highlight-blue"></i>
+                        </div>
+                        <div class="w-full md:w-[47%] md:mr-auto p-8 liquid-glass">
+                            <h3 class="text-2xl font-bold mb-4 highlight-blue text-center md:text-left">Iniciante (1–2 anos)</h3>
+                            <p class="text-gray-400 mb-4 text-sm">O ponto de partida da sua paixão pelo violino, construindo uma base sólida com confiança e apoio.</p>
+                            <ul class="space-y-3 text-gray-300">
+                                <li class="flex items-start"><i class="fas fa-check-circle highlight-blue mr-3 mt-1"></i><div><strong class="text-white">Aula de Descoberta:</strong> Sua primeira experiência para sentir a magia do violino, sem compromissos.</div></li>
+                                <li class="flex items-start"><i class="fas fa-check-circle highlight-blue mr-3 mt-1"></i><div><strong class="text-white">Fundamentos Essenciais:</strong> Aprenda postura, manuseio do arco, som limpo e coordenação.</div></li>
+                                <li class="flex items-start"><i class="fas fa-check-circle highlight-blue mr-3 mt-1"></i><div><strong class="text-white">Método Suzuki:</strong> Iniciação a um dos métodos mais renomados de ensino musical.</div></li>
+                                <li class="flex items-start"><i class="fas fa-check-circle highlight-blue mr-3 mt-1"></i><div><strong class="text-white">Primeiras Apresentações:</strong> Ganhe confiança se apresentando em um ambiente acolhedor.</div></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Estágio 2: Intermediário -->
+                    <div class="relative" data-aos="fade-left">
+                        <div class="absolute w-12 h-12 bg-slate-800 rounded-full left-1/2 transform -translate-x-1/2 flex items-center justify-center border-4 border-slate-700">
+                            <i class="fas fa-rocket text-xl highlight-blue"></i>
+                        </div>
+                        <div class="w-full md:w-[47%] md:ml-auto p-8 liquid-glass">
+                            <h3 class="text-2xl font-bold mb-4 highlight-blue text-center md:text-left">Intermediário (3–4 anos)</h3>
+                            <p class="text-gray-400 mb-4 text-sm">É hora de aprofundar sua arte, refinar a técnica e encontrar sua voz como músico.</p>
+                             <ul class="space-y-3 text-gray-300">
+                                <li class="flex items-start"><i class="fas fa-trophy highlight-blue mr-3 mt-1"></i><div><strong class="text-white">Festivais Competitivos:</strong> Participe de apresentações e festivais de maior destaque para ganhar experiência de palco.</div></li>
+                                <li class="flex items-start"><i class="fas fa-book-open highlight-blue mr-3 mt-1"></i><div><strong class="text-white">Suzuki Avançado:</strong> Continue sua evolução no método, explorando peças e técnicas mais complexas.</div></li>
+                                <li class="flex items-start"><i class="fas fa-theater-masks highlight-blue mr-3 mt-1"></i><div><strong class="text-white">Domínio de Palco:</strong> Trabalhe com técnicas abrangentes de performance, incluindo expressão corporal e conexão com o público.</div></li>
+                                <li class="flex items-start"><i class="fas fa-music highlight-blue mr-3 mt-1"></i><div><strong class="text-white">Teoria Musical Completa:</strong> Solidifique seu conhecimento com um currículo teórico quase completo, dominando a linguagem da música.</div></li>
+                                <li class="flex items-start"><i class="fas fa-star highlight-blue mr-3 mt-1"></i><div><strong class="text-white">Diferencial Revolucionário:</strong> Acesso a mentorias exclusivas com músicos convidados e a oportunidade de participar de gravações em estúdio.</div></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Depoimentos -->
+        <section id="depoimentos" class="py-24">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <h2 class="section-title highlight-text">O Que Dizem Sobre o Projeto</h2>
+                    <p class="section-subtitle">O impacto da música na vida de nossos participantes e apoiadores.</p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="liquid-glass p-6" data-aos="fade-up" data-aos-delay="100">
+                        <i class="fas fa-quote-left highlight-blue text-2xl mb-4"></i>
+                        <p class="text-gray-300 mb-4">"Em poucos meses, já me sinto parte de uma família. Os professores são incrivelmente pacientes e dedicados."</p>
+                        <div class="border-t border-gray-700/50 pt-4"><h4 class="font-bold">Carlos Eduardo</h4><p class="text-sm text-gray-400">Aluno</p></div>
+                    </div>
+                    <div class="liquid-glass p-6" data-aos="fade-up" data-aos-delay="200">
+                        <i class="fas fa-quote-left highlight-blue text-2xl mb-4"></i>
+                        <p class="text-gray-300 mb-4">"Ver a alegria da minha filha se apresentando não tem preço. Este projeto é uma bênção para nossa comunidade."</p>
+                        <div class="border-t border-gray-700/50 pt-4"><h4 class="font-bold">Juliana M.</h4><p class="text-sm text-gray-400">Mãe de Aluna</p></div>
+                    </div>
+                    <div class="liquid-glass p-6" data-aos="fade-up" data-aos-delay="300">
+                        <i class="fas fa-quote-left highlight-blue text-2xl mb-4"></i>
+                        <p class="text-gray-300 mb-4">"Apoiar esta iniciativa é investir no futuro. A música ensina disciplina, foco e, acima de tudo, sensibilidade."</p>
+                        <div class="border-t border-gray-700/50 pt-4"><h4 class="font-bold">Ana Lúcia</h4><p class="text-sm text-gray-400">Apoiadora</p></div>
                     </div>
                 </div>
             </div>
@@ -201,47 +270,41 @@
                 </div>
                 
                 <div class="flex space-x-8 pb-4 -mx-4 px-4 overflow-x-auto hide-scrollbar" data-aos="fade-up">
-                    <!-- Card de Partitura -->
-                    <div class="flex-shrink-0 w-64 liquid-glass p-6 text-center">
+                    <div class="flex-shrink-0 w-64 liquid-glass p-6 text-center hover:-translate-y-2 transition-transform">
                         <i class="fas fa-file-pdf text-4xl mb-4 highlight-blue"></i>
                         <h3 class="font-bold text-lg mb-2">Suzuki Método 1</h3>
                         <span class="text-xs font-semibold bg-green-500/20 text-green-300 px-2 py-1 rounded-full mb-4 inline-block">Gratuito</span>
-                        <a href="#" class="button-blue text-white font-bold py-2 px-6 rounded-full text-sm block w-full"><i class="fas fa-download mr-2"></i>Baixar PDF</a>
+                        <a href="#" class="button-blue font-bold py-2 px-6 rounded-full text-sm block w-full"><i class="fas fa-download mr-2"></i>Baixar PDF</a>
                     </div>
-                     <!-- Card de Partitura -->
-                    <div class="flex-shrink-0 w-64 liquid-glass p-6 text-center">
+                    <div class="flex-shrink-0 w-64 liquid-glass p-6 text-center hover:-translate-y-2 transition-transform">
                         <i class="fas fa-file-pdf text-4xl mb-4 highlight-blue"></i>
                         <h3 class="font-bold text-lg mb-2">Suzuki Método 2</h3>
                         <span class="text-xs font-semibold bg-green-500/20 text-green-300 px-2 py-1 rounded-full mb-4 inline-block">Gratuito</span>
-                        <a href="#" class="button-blue text-white font-bold py-2 px-6 rounded-full text-sm block w-full"><i class="fas fa-download mr-2"></i>Baixar PDF</a>
+                        <a href="#" class="button-blue font-bold py-2 px-6 rounded-full text-sm block w-full"><i class="fas fa-download mr-2"></i>Baixar PDF</a>
                     </div>
-                     <!-- Card de Partitura -->
-                    <div class="flex-shrink-0 w-64 liquid-glass p-6 text-center">
+                    <div class="flex-shrink-0 w-64 liquid-glass p-6 text-center hover:-translate-y-2 transition-transform">
                         <i class="fas fa-file-pdf text-4xl mb-4 highlight-blue"></i>
                         <h3 class="font-bold text-lg mb-2">Twinkle, Twinkle</h3>
                         <span class="text-xs font-semibold bg-green-500/20 text-green-300 px-2 py-1 rounded-full mb-4 inline-block">Gratuito</span>
-                        <a href="#" class="button-blue text-white font-bold py-2 px-6 rounded-full text-sm block w-full"><i class="fas fa-download mr-2"></i>Baixar PDF</a>
+                        <a href="#" class="button-blue font-bold py-2 px-6 rounded-full text-sm block w-full"><i class="fas fa-download mr-2"></i>Baixar PDF</a>
                     </div>
-                     <!-- Card de Partitura -->
-                    <div class="flex-shrink-0 w-64 liquid-glass p-6 text-center">
+                    <div class="flex-shrink-0 w-64 liquid-glass p-6 text-center hover:-translate-y-2 transition-transform">
                         <i class="fas fa-file-pdf text-4xl mb-4 highlight-blue"></i>
                         <h3 class="font-bold text-lg mb-2">Minueto em Sol (Bach)</h3>
                         <span class="text-xs font-semibold bg-green-500/20 text-green-300 px-2 py-1 rounded-full mb-4 inline-block">Gratuito</span>
-                        <a href="#" class="button-blue text-white font-bold py-2 px-6 rounded-full text-sm block w-full"><i class="fas fa-download mr-2"></i>Baixar PDF</a>
+                        <a href="#" class="button-blue font-bold py-2 px-6 rounded-full text-sm block w-full"><i class="fas fa-download mr-2"></i>Baixar PDF</a>
                     </div>
-                    <!-- Card de Partitura -->
-                    <div class="flex-shrink-0 w-64 liquid-glass p-6 text-center">
+                    <div class="flex-shrink-0 w-64 liquid-glass p-6 text-center hover:-translate-y-2 transition-transform">
                         <i class="fas fa-file-pdf text-4xl mb-4 highlight-blue"></i>
                         <h3 class="font-bold text-lg mb-2">Ode à Alegria</h3>
                         <span class="text-xs font-semibold bg-green-500/20 text-green-300 px-2 py-1 rounded-full mb-4 inline-block">Gratuito</span>
-                        <a href="#" class="button-blue text-white font-bold py-2 px-6 rounded-full text-sm block w-full"><i class="fas fa-download mr-2"></i>Baixar PDF</a>
+                        <a href="#" class="button-blue font-bold py-2 px-6 rounded-full text-sm block w-full"><i class="fas fa-download mr-2"></i>Baixar PDF</a>
                     </div>
-                     <!-- Card de Partitura -->
-                    <div class="flex-shrink-0 w-64 liquid-glass p-6 text-center">
+                    <div class="flex-shrink-0 w-64 liquid-glass p-6 text-center hover:-translate-y-2 transition-transform">
                         <i class="fas fa-file-pdf text-4xl mb-4 highlight-blue"></i>
                         <h3 class="font-bold text-lg mb-2">Cânone em Ré (Pachelbel)</h3>
                         <span class="text-xs font-semibold bg-yellow-500/20 text-yellow-300 px-2 py-1 rounded-full mb-4 inline-block">Gratuito</span>
-                        <a href="#" class="button-blue text-white font-bold py-2 px-6 rounded-full text-sm block w-full"><i class="fas fa-download mr-2"></i>Baixar PDF</a>
+                        <a href="#" class="button-blue font-bold py-2 px-6 rounded-full text-sm block w-full"><i class="fas fa-download mr-2"></i>Baixar PDF</a>
                     </div>
                 </div>
             </div>
@@ -255,7 +318,6 @@
                     <p class="section-subtitle">Conheça os talentos e a filosofia que guiam nossos alunos nesta jornada musical.</p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                    <!-- Professor Hélio -->
                     <div class="liquid-glass overflow-hidden text-center group" data-aos="zoom-in" data-aos-delay="100">
                         <img src="https://images.unsplash.com/photo-1551024354-91a3f6954278?auto=format&fit=crop&w=800&q=80" alt="Professor Hélio" class="w-full h-64 object-cover object-center transform group-hover:scale-105 transition-transform duration-300">
                         <div class="p-6">
@@ -264,7 +326,6 @@
                             <p class="text-sm text-gray-300">Com vasta experiência orquestral, Hélio foca na técnica apurada e na interpretação expressiva, guiando os alunos na construção de uma base clássica sólida.</p>
                         </div>
                     </div>
-                    <!-- Professor Emanuel -->
                     <div class="liquid-glass overflow-hidden text-center group" data-aos="zoom-in" data-aos-delay="200">
                         <img src="https://images.unsplash.com/photo-1542652694-469b45a30898?auto=format&fit=crop&w=800&q=80" alt="Professor Emanuel" class="w-full h-64 object-cover object-center transform group-hover:scale-105 transition-transform duration-300">
                         <div class="p-6">
@@ -273,7 +334,6 @@
                             <p class="text-sm text-gray-300">Especialista em improvisação, Emanuel traz uma perspectiva dinâmica, inspirando os alunos a explorarem sua própria voz musical e a se conectarem com a música de forma autêntica.</p>
                         </div>
                     </div>
-                     <!-- Projeto Musikantiga -->
                     <div class="liquid-glass overflow-hidden text-center group" data-aos="zoom-in" data-aos-delay="300">
                         <img src="https://images.unsplash.com/photo-1581898799432-c73ac706240d?auto=format&fit=crop&w=800&q=80" alt="Projeto Musikantiga" class="w-full h-64 object-cover object-center transform group-hover:scale-105 transition-transform duration-300">
                         <div class="p-6">
@@ -300,7 +360,7 @@
                             <input type="text" placeholder="Seu Nome" class="w-full bg-gray-800/50 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-sky-500 transition">
                             <input type="email" placeholder="Seu Email" class="w-full bg-gray-800/50 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-sky-500 transition">
                             <textarea placeholder="Sua Mensagem" rows="4" class="w-full bg-gray-800/50 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-sky-500 transition"></textarea>
-                            <button type="submit" class="w-full button-blue text-white py-3 rounded-full font-bold">Enviar</button>
+                            <button type="submit" class="w-full button-blue font-bold py-3 rounded-full">Enviar</button>
                         </form>
                     </div>
                     <div data-aos="fade-left" class="md:pl-8">
@@ -339,7 +399,14 @@
         menuToggle.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
         
         document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+            link.addEventListener('click', () => {
+                // Adiciona um pequeno delay para a rolagem acontecer antes de fechar o menu
+                setTimeout(() => {
+                    if (!mobileMenu.classList.contains('hidden')) {
+                         mobileMenu.classList.add('hidden');
+                    }
+                }, 150);
+            });
         });
     </script>
 </body>
