@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projeto Violino - A Arte de Transformar Vidas</title>
+    <title>Aprenda Violino e Teoria Musical | Projeto Musikantiga</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
@@ -11,7 +11,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
     <style>
-        /* Estética Inspirada no Vídeo */
         html {
             scroll-behavior: smooth;
             scroll-padding-top: 100px;
@@ -21,7 +20,7 @@
             font-family: 'Inter', sans-serif;
         }
         .liquid-glass {
-            background: rgba(17, 24, 39, 0.5); /* Fundo do card mais escuro e sutil */
+            background: rgba(17, 24, 39, 0.5);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border-radius: 1rem; /* 16px */
@@ -34,20 +33,46 @@
             -webkit-backdrop-filter: blur(12px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
-        .gradient-text {
-            background: linear-gradient(45deg, #fcd34d, #ffffff, #fbbf24);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
+        
+        /* NOVA PALETA DE COR AZUL VIBRANTE */
+        @keyframes vibrate-subtle {
+            0% { transform: scale(1); text-shadow: 0 0 5px rgba(14, 165, 233, 0); }
+            50% { transform: scale(1.01); text-shadow: 0 0 10px rgba(14, 165, 233, 0.5); }
+            100% { transform: scale(1); text-shadow: 0 0 5px rgba(14, 165, 233, 0); }
         }
-        .gradient-button {
-            background-image: linear-gradient(to right, #f59e0b, #ea580c);
+
+        .highlight-text {
+            color: #0ea5e9; /* sky-500 */
+            animation: vibrate-subtle 5s ease-in-out infinite;
+        }
+
+        .highlight-blue {
+            color: #0ea5e9; /* sky-500 */
+        }
+        
+        .button-blue {
+            background-color: #0ea5e9;
             transition: all 0.3s ease;
+            animation: vibrate-subtle 5s ease-in-out infinite;
         }
-        .gradient-button:hover {
-            box-shadow: 0 0 20px rgba(245, 158, 11, 0.5);
+
+        .button-blue:hover {
+            background-color: #0284c7; /* sky-600 */
+            box-shadow: 0 0 20px rgba(14, 165, 233, 0.5);
             transform: translateY(-2px);
         }
+
+        .button-outline-blue {
+            border: 1px solid #0ea5e9;
+            color: #0ea5e9;
+            transition: all 0.3s ease;
+        }
+
+        .button-outline-blue:hover {
+            background-color: rgba(14, 165, 233, 0.1);
+            transform: translateY(-2px);
+        }
+
         .section-title {
             font-size: 2.25rem; /* text-4xl */
             font-weight: 800;
@@ -60,7 +85,7 @@
             margin-left: auto;
             margin-right: auto;
         }
-        /* Animação do Scroll Down */
+        
         @keyframes bounce-scroll {
             0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
             40% { transform: translateY(-15px); }
@@ -68,6 +93,15 @@
         }
         .scroll-down-icon {
             animation: bounce-scroll 2.5s infinite;
+        }
+
+        /* Estilo para a vitrine de partituras */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
         }
     </style>
 </head>
@@ -77,15 +111,14 @@
     <header class="liquid-glass-header fixed w-full z-50 top-0">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
             <a href="#home" class="flex items-center space-x-2">
-                <i class="fas fa-music text-2xl text-amber-400"></i>
-                <h1 class="text-xl font-bold text-white">Projeto Violino</h1>
+                <i class="fas fa-music text-2xl highlight-blue"></i>
+                <h1 class="text-xl font-bold text-white">Musikantiga</h1>
             </a>
             <nav class="hidden md:flex items-center space-x-8 text-sm font-medium">
-                <a href="#project" class="text-gray-300 hover:text-amber-300 transition">O Projeto</a>
-                <a href="#evolucao" class="text-gray-300 hover:text-amber-300 transition">Como Funciona</a>
-                <a href="#teachers" class="text-gray-300 hover:text-amber-300 transition">Professores</a>
-                <a href="#church" class="text-gray-300 hover:text-amber-300 transition">Parceria</a>
-                <a href="#contact" class="text-gray-300 hover:text-amber-300 transition">Contato</a>
+                <a href="#metodologia" class="text-gray-300 hover:text-sky-300 transition">Como Funciona</a>
+                <a href="#biblioteca" class="text-gray-300 hover:text-sky-300 transition">Biblioteca</a>
+                <a href="#teachers" class="text-gray-300 hover:text-sky-300 transition">Professores</a>
+                <a href="#contact" class="text-gray-300 hover:text-sky-300 transition">Contato</a>
             </nav>
             <button class="md:hidden text-2xl focus:outline-none" id="menu-toggle">
                 <i class="fas fa-bars"></i>
@@ -93,11 +126,10 @@
         </div>
         <div id="mobile-menu" class="hidden md:hidden absolute w-full left-0 mt-0 py-4 liquid-glass-header border-t-0">
             <ul class="flex flex-col items-center space-y-4">
-                <li><a href="#project" class="text-gray-300 hover:text-amber-300 transition">O Projeto</a></li>
-                <li><a href="#evolucao" class="text-gray-300 hover:text-amber-300 transition">Como Funciona</a></li>
-                <li><a href="#teachers" class="text-gray-300 hover:text-amber-300 transition">Professores</a></li>
-                <li><a href="#church" class="text-gray-300 hover:text-amber-300 transition">Parceria</a></li>
-                <li><a href="#contact" class="text-gray-300 hover:text-amber-300 transition">Contato</a></li>
+                <li><a href="#metodologia" class="text-gray-300 hover:text-sky-300 transition nav-link">Como Funciona</a></li>
+                <li><a href="#biblioteca" class="text-gray-300 hover:text-sky-300 transition nav-link">Biblioteca</a></li>
+                <li><a href="#teachers" class="text-gray-300 hover:text-sky-300 transition nav-link">Professores</a></li>
+                <li><a href="#contact" class="text-gray-300 hover:text-sky-300 transition nav-link">Contato</a></li>
             </ul>
         </div>
     </header>
@@ -109,196 +141,145 @@
             <div class="absolute inset-0 bg-gradient-to-b from-transparent to-[#0f172a]"></div>
             
             <div class="relative z-10" data-aos="fade-up">
-                <h1 class="text-4xl md:text-6xl font-extrabold mb-6 gradient-text">Aprenda Violino com Paixão</h1>
-                <p class="text-lg md:text-xl text-gray-300 mb-10 max-w-2xl mx-auto">Um projeto comunitário que une música, fé e transformação social para todas as idades.</p>
+                <h1 class="text-4xl md:text-6xl font-extrabold mb-6 highlight-text">Aprenda Violino e Teoria Musical</h1>
+                <p class="text-lg md:text-xl text-gray-300 mb-10 max-w-2xl mx-auto">Desvende o universo do violino dominando a teoria musical e a leitura de partituras. Nosso método combina atividades práticas e dinâmicas, tornando o aprendizado uma experiência acessível e gratificante para todas as idades.</p>
                 <div class="flex flex-col sm:flex-row justify-center gap-4">
-                    <a href="#contact" class="gradient-button text-white px-8 py-3 rounded-full font-bold transition">
+                    <a href="#contact" class="button-blue text-white px-8 py-3 rounded-full font-bold">
                         Comece Sua Jornada
                     </a>
-                    <a href="#project" class="border border-amber-400 text-amber-300 px-8 py-3 rounded-full font-bold transition hover:bg-amber-400/10">
+                    <a href="#metodologia" class="button-outline-blue px-8 py-3 rounded-full font-bold">
                         Saiba Mais
                     </a>
                 </div>
             </div>
 
-            <a href="#project" class="absolute bottom-10 z-10 scroll-down-icon">
+            <a href="#metodologia" class="absolute bottom-10 z-10 scroll-down-icon">
                 <i class="fas fa-chevron-down text-2xl text-gray-500"></i>
             </a>
         </section>
 
-        <!-- Sobre o Projeto -->
-        <section id="project" class="py-24">
+        <!-- Como Funciona -->
+        <section id="metodologia" class="py-24">
             <div class="container mx-auto px-4">
                 <div class="text-center mb-16" data-aos="fade-up">
-                    <h2 class="section-title gradient-text">Sobre o Nosso Projeto</h2>
-                    <p class="section-subtitle">Mais do que aulas de música: um movimento de inclusão, arte e comunidade.</p>
+                    <h2 class="section-title highlight-text">Como o Projeto Funciona</h2>
+                    <p class="section-subtitle">Nossa jornada musical é estruturada para acompanhar sua evolução. Guiamos você por dois estágios fundamentais: <strong class="text-white">Iniciante (1–2 anos)</strong>, focado na construção de uma base sólida, e <strong class="text-white">Intermediário (3–4 anos)</strong>, onde aprimoramos sua arte e expressão.</p>
                 </div>
                 
-                <div class="grid md:grid-cols-2 gap-12 items-center">
-                    <div data-aos="fade-right" class="order-2 md:order-1">
-                        <div class="liquid-glass p-8 md:p-10">
-                            <h3 class="text-2xl font-bold mb-4 text-amber-300">Transformando Vidas Através da Música</h3>
-                            <p class="text-gray-300 mb-6">Em parceria com a Igreja Luterana, nosso projeto oferece um espaço acolhedor para o aprendizado do violino, unindo a excelência do ensino musical com o objetivo de fortalecer laços comunitários e promover o desenvolvimento pessoal e social.</p>
-                            <ul class="space-y-4">
-                                <li class="flex items-start"><i class="fas fa-check-circle text-amber-400 mr-3 mt-1"></i><div><strong class="text-white">Aulas Acessíveis:</strong> Inicie com aulas gratuitas e continue com um valor simbólico.</div></li>
-                                <li class="flex items-start"><i class="fas fa-check-circle text-amber-400 mr-3 mt-1"></i><div><strong class="text-white">Comunidade Unida:</strong> Um ambiente para aprender, compartilhar e crescer com outros músicos.</div></li>
-                                <li class="flex items-start"><i class="fas fa-check-circle text-amber-400 mr-3 mt-1"></i><div><strong class="text-white">Apresentações Inspiradoras:</strong> Oportunidades para se apresentar, ganhar confiança e celebrar o progresso.</div></li>
-                            </ul>
-                        </div>
+                <div class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+                    <!-- Nível Iniciante -->
+                    <div class="liquid-glass p-8" data-aos="fade-up">
+                        <h3 class="text-2xl font-bold mb-4 highlight-blue">Iniciante (1–2 anos)</h3>
+                        <ul class="space-y-4 text-gray-300">
+                            <li class="flex items-start"><i class="fas fa-check-circle highlight-blue mr-3 mt-1"></i><div><strong class="text-white">Aula de Descoberta:</strong> Agende sua primeira aula para sentir a magia do violino, sem compromissos.</div></li>
+                            <li class="flex items-start"><i class="fas fa-check-circle highlight-blue mr-3 mt-1"></i><div><strong class="text-white">Fundamentos Essenciais:</strong> Aprenda habilidades cruciais como postura, como segurar o arco, produção de som limpo e coordenação.</div></li>
+                            <li class="flex items-start"><i class="fas fa-check-circle highlight-blue mr-3 mt-1"></i><div><strong class="text-white">Método Suzuki:</strong> Utilizamos um dos métodos mais renomados do Brasil, referência no ensino musical infantil, para um desenvolvimento natural e intuitivo.</div></li>
+                             <li class="flex items-start"><i class="fas fa-check-circle highlight-blue mr-3 mt-1"></i><div><strong class="text-white">Primeiras Apresentações:</strong> Encorajamos você a se apresentar, um passo fundamental para construir confiança e celebrar seu progresso.</div></li>
+                            <li class="flex items-start"><i class="fas fa-check-circle highlight-blue mr-3 mt-1"></i><div><strong class="text-white">Apoio ao Projeto:</strong> Sua participação é viabilizada por uma contribuição consciente, que apoia o projeto Musikantiga e valoriza nossos professores.</div></li>
+                        </ul>
                     </div>
-                    <div data-aos="fade-left" class="order-1 md:order-2">
-                        <img src="https://images.unsplash.com/photo-1599307897258-a72611e93a74?auto=format&fit=crop&w=1470&q=80" alt="Crianças aprendendo violino" class="rounded-2xl shadow-2xl shadow-blue-900/20 w-full h-auto">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Como Funciona -->
-        <section id="evolucao" class="py-24">
-            <div class="container mx-auto px-4">
-                <div class="text-center mb-20" data-aos="fade-up">
-                    <h2 class="section-title gradient-text">Como o Projeto Funciona</h2>
-                    <p class="section-subtitle">Um modelo simples e sustentável, criado para beneficiar alunos, professores e a comunidade.</p>
-                </div>
-
-                <!-- Timeline -->
-                <div class="relative max-w-2xl mx-auto">
-                    <div class="absolute left-1/2 w-1 h-full bg-gray-700/50 transform -translate-x-1/2"></div>
-                    <!-- Item 1 -->
-                    <div class="relative mb-12" data-aos="fade-up">
-                        <div class="absolute w-8 h-8 bg-amber-500 rounded-full left-1/2 transform -translate-x-1/2 -translate-y-1 flex items-center justify-center text-white font-bold">1</div>
-                        <div class="ml-auto md:ml-0 md:w-[45%] md:mr-auto p-6 liquid-glass">
-                            <h3 class="font-bold text-lg mb-2">Aulas Experimentais Gratuitas</h3>
-                            <p class="text-sm text-gray-300">Oferecemos 1 ou 2 aulas para que novos alunos conheçam o projeto e o professor, sem compromisso.</p>
-                        </div>
-                    </div>
-                    <!-- Item 2 -->
-                    <div class="relative mb-12" data-aos="fade-up">
-                        <div class="absolute w-8 h-8 bg-amber-500 rounded-full left-1/2 transform -translate-x-1/2 -translate-y-1 flex items-center justify-center text-white font-bold">2</div>
-                        <div class="ml-auto w-full md:w-[45%] p-6 liquid-glass">
-                            <h3 class="font-bold text-lg mb-2">Contribuição Simbólica</h3>
-                            <p class="text-sm text-gray-300">Para continuar, os alunos contribuem com um valor acessível (ex: R$ 20/aula) para garantir a sustentabilidade do projeto.</p>
-                        </div>
-                    </div>
-                    <!-- Item 3 -->
-                    <div class="relative" data-aos="fade-up">
-                        <div class="absolute w-8 h-8 bg-amber-500 rounded-full left-1/2 transform -translate-x-1/2 -translate-y-1 flex items-center justify-center text-white font-bold">3</div>
-                        <div class="ml-auto md:ml-0 md:w-[45%] md:mr-auto p-6 liquid-glass">
-                            <h3 class="font-bold text-lg mb-2">Divisão Justa dos Recursos</h3>
-                            <p class="text-sm text-gray-300">O valor é dividido de forma transparente: 50% para o professor, 30% para a organização e 20% para o espaço.</p>
-                        </div>
+                    <!-- Nível Intermediário -->
+                    <div class="liquid-glass p-8" data-aos="fade-up" data-aos-delay="200">
+                        <h3 class="text-2xl font-bold mb-4 highlight-blue">Intermediário (3–4 anos)</h3>
+                        <ul class="space-y-4 text-gray-300">
+                            <li class="flex items-start"><i class="fas fa-rocket highlight-blue mr-3 mt-1"></i><div><strong class="text-white">Palcos e Festivais:</strong> Participe de recitais e festivais mais competitivos, ganhando valiosa experiência de palco.</div></li>
+                            <li class="flex items-start"><i class="fas fa-rocket highlight-blue mr-3 mt-1"></i><div><strong class="text-white">Técnica Avançada:</strong> Aprofunde-se no Método Suzuki e trabalhe com técnicas abrangentes de palco, incluindo expressão corporal.</div></li>
+                            <li class="flex items-start"><i class="fas fa-rocket highlight-blue mr-3 mt-1"></i><div><strong class="text-white">Teoria Musical Completa:</strong> Solidifique seu conhecimento com um currículo teórico quase completo, dominando a linguagem da música.</div></li>
+                             <li class="flex items-start"><i class="fas fa-star highlight-blue mr-3 mt-1"></i><div><strong class="text-white">Diferencial Revolucionário:</strong> Tenha acesso a mentorias exclusivas com músicos convidados e a oportunidade de participar de gravações em estúdio profissional.</div></li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Depoimentos -->
-        <section id="depoimentos" class="py-24 bg-slate-900/50">
+        <!-- Biblioteca de Partituras -->
+        <section id="biblioteca" class="py-24 bg-slate-900/50">
             <div class="container mx-auto px-4">
                 <div class="text-center mb-16" data-aos="fade-up">
-                    <h2 class="section-title gradient-text">O Que Dizem Sobre o Projeto</h2>
-                    <p class="section-subtitle">O impacto da música na vida de nossos participantes e apoiadores.</p>
+                    <h2 class="section-title highlight-text">Biblioteca de Partituras</h2>
+                    <p class="section-subtitle">Explore nossa coleção de partituras. Todo o material é gratuito e está disponível para download imediato, apoiando sua jornada de estudos.</p>
                 </div>
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="liquid-glass p-6" data-aos="fade-up" data-aos-delay="100">
-                        <i class="fas fa-quote-left text-amber-400 text-2xl mb-4"></i>
-                        <p class="text-gray-300 mb-4">"Em poucos meses, já me sinto parte de uma família. Os professores são incrivelmente pacientes e dedicados."</p>
-                        <div class="border-t border-gray-700/50 pt-4"><h4 class="font-bold">Carlos Eduardo</h4><p class="text-sm text-gray-400">Aluno</p></div>
+                
+                <div class="flex space-x-8 pb-4 -mx-4 px-4 overflow-x-auto hide-scrollbar" data-aos="fade-up">
+                    <!-- Card de Partitura -->
+                    <div class="flex-shrink-0 w-64 liquid-glass p-6 text-center">
+                        <i class="fas fa-file-pdf text-4xl mb-4 highlight-blue"></i>
+                        <h3 class="font-bold text-lg mb-2">Suzuki Método 1</h3>
+                        <span class="text-xs font-semibold bg-green-500/20 text-green-300 px-2 py-1 rounded-full mb-4 inline-block">Gratuito</span>
+                        <a href="#" class="button-blue text-white font-bold py-2 px-6 rounded-full text-sm block w-full"><i class="fas fa-download mr-2"></i>Baixar PDF</a>
                     </div>
-                    <div class="liquid-glass p-6" data-aos="fade-up" data-aos-delay="200">
-                        <i class="fas fa-quote-left text-amber-400 text-2xl mb-4"></i>
-                        <p class="text-gray-300 mb-4">"Ver a alegria das crianças se apresentando na igreja não tem preço. Este projeto é uma bênção para nossa comunidade."</p>
-                        <div class="border-t border-gray-700/50 pt-4"><h4 class="font-bold">Pastor João</h4><p class="text-sm text-gray-400">Líder Espiritual</p></div>
+                     <!-- Card de Partitura -->
+                    <div class="flex-shrink-0 w-64 liquid-glass p-6 text-center">
+                        <i class="fas fa-file-pdf text-4xl mb-4 highlight-blue"></i>
+                        <h3 class="font-bold text-lg mb-2">Suzuki Método 2</h3>
+                        <span class="text-xs font-semibold bg-green-500/20 text-green-300 px-2 py-1 rounded-full mb-4 inline-block">Gratuito</span>
+                        <a href="#" class="button-blue text-white font-bold py-2 px-6 rounded-full text-sm block w-full"><i class="fas fa-download mr-2"></i>Baixar PDF</a>
                     </div>
-                    <div class="liquid-glass p-6" data-aos="fade-up" data-aos-delay="300">
-                        <i class="fas fa-quote-left text-amber-400 text-2xl mb-4"></i>
-                        <p class="text-gray-300 mb-4">"Apoiar esta iniciativa é investir no futuro. A música ensina disciplina, foco e, acima de tudo, sensibilidade."</p>
-                        <div class="border-t border-gray-700/50 pt-4"><h4 class="font-bold">Ana Lúcia</h4><p class="text-sm text-gray-400">Patrocinadora</p></div>
+                     <!-- Card de Partitura -->
+                    <div class="flex-shrink-0 w-64 liquid-glass p-6 text-center">
+                        <i class="fas fa-file-pdf text-4xl mb-4 highlight-blue"></i>
+                        <h3 class="font-bold text-lg mb-2">Twinkle, Twinkle</h3>
+                        <span class="text-xs font-semibold bg-green-500/20 text-green-300 px-2 py-1 rounded-full mb-4 inline-block">Gratuito</span>
+                        <a href="#" class="button-blue text-white font-bold py-2 px-6 rounded-full text-sm block w-full"><i class="fas fa-download mr-2"></i>Baixar PDF</a>
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Partituras -->
-        <section id="partituras" class="py-24">
-            <div class="container mx-auto px-4">
-                <div class="text-center mb-16" data-aos="fade-up">
-                    <h2 class="section-title gradient-text">Biblioteca de Partituras</h2>
-                    <p class="section-subtitle">Material de apoio para você praticar e evoluir em seus estudos.</p>
-                </div>
-                <div class="max-w-4xl mx-auto space-y-4">
-                    <!-- Item de Partitura -->
-                    <div class="liquid-glass p-4 sm:p-6 flex justify-between items-center" data-aos="fade-up">
-                        <div>
-                            <h3 class="font-bold text-lg">Brilha, Brilha Estrelinha</h3>
-                            <span class="text-xs font-semibold bg-green-500/20 text-green-300 px-2 py-1 rounded-full">Iniciante</span>
-                        </div>
-                        <a href="#" class="gradient-button text-white font-bold py-2 px-4 rounded-full text-sm"><i class="fas fa-download mr-2"></i>PDF</a>
+                     <!-- Card de Partitura -->
+                    <div class="flex-shrink-0 w-64 liquid-glass p-6 text-center">
+                        <i class="fas fa-file-pdf text-4xl mb-4 highlight-blue"></i>
+                        <h3 class="font-bold text-lg mb-2">Minueto em Sol (Bach)</h3>
+                        <span class="text-xs font-semibold bg-green-500/20 text-green-300 px-2 py-1 rounded-full mb-4 inline-block">Gratuito</span>
+                        <a href="#" class="button-blue text-white font-bold py-2 px-6 rounded-full text-sm block w-full"><i class="fas fa-download mr-2"></i>Baixar PDF</a>
                     </div>
-                    <!-- Item de Partitura -->
-                    <div class="liquid-glass p-4 sm:p-6 flex justify-between items-center" data-aos="fade-up">
-                        <div>
-                            <h3 class="font-bold text-lg">Asa Branca</h3>
-                            <span class="text-xs font-semibold bg-yellow-500/20 text-yellow-300 px-2 py-1 rounded-full">Intermediário</span>
-                        </div>
-                        <a href="#" class="gradient-button text-white font-bold py-2 px-4 rounded-full text-sm"><i class="fas fa-download mr-2"></i>PDF</a>
+                    <!-- Card de Partitura -->
+                    <div class="flex-shrink-0 w-64 liquid-glass p-6 text-center">
+                        <i class="fas fa-file-pdf text-4xl mb-4 highlight-blue"></i>
+                        <h3 class="font-bold text-lg mb-2">Ode à Alegria</h3>
+                        <span class="text-xs font-semibold bg-green-500/20 text-green-300 px-2 py-1 rounded-full mb-4 inline-block">Gratuito</span>
+                        <a href="#" class="button-blue text-white font-bold py-2 px-6 rounded-full text-sm block w-full"><i class="fas fa-download mr-2"></i>Baixar PDF</a>
                     </div>
-                    <!-- Item de Partitura -->
-                    <div class="liquid-glass p-4 sm:p-6 flex justify-between items-center" data-aos="fade-up">
-                        <div>
-                            <h3 class="font-bold text-lg">Concerto em Lá menor (Vivaldi)</h3>
-                            <span class="text-xs font-semibold bg-purple-500/20 text-purple-300 px-2 py-1 rounded-full">Avançado</span>
-                        </div>
-                        <a href="#" class="gradient-button text-white font-bold py-2 px-4 rounded-full text-sm"><i class="fas fa-download mr-2"></i>PDF</a>
+                     <!-- Card de Partitura -->
+                    <div class="flex-shrink-0 w-64 liquid-glass p-6 text-center">
+                        <i class="fas fa-file-pdf text-4xl mb-4 highlight-blue"></i>
+                        <h3 class="font-bold text-lg mb-2">Cânone em Ré (Pachelbel)</h3>
+                        <span class="text-xs font-semibold bg-yellow-500/20 text-yellow-300 px-2 py-1 rounded-full mb-4 inline-block">Gratuito</span>
+                        <a href="#" class="button-blue text-white font-bold py-2 px-6 rounded-full text-sm block w-full"><i class="fas fa-download mr-2"></i>Baixar PDF</a>
                     </div>
                 </div>
             </div>
         </section>
         
         <!-- Professores -->
-        <section id="teachers" class="py-24 bg-slate-900/50">
+        <section id="teachers" class="py-24">
             <div class="container mx-auto px-4">
                 <div class="text-center mb-16" data-aos="fade-up">
-                    <h2 class="section-title gradient-text">Nossos Professores</h2>
-                    <p class="section-subtitle">Conheça os talentos que guiam nossos alunos nesta jornada musical.</p>
+                    <h2 class="section-title highlight-text">Nossa Equipe Pedagógica</h2>
+                    <p class="section-subtitle">Conheça os talentos e a filosofia que guiam nossos alunos nesta jornada musical.</p>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="liquid-glass overflow-hidden text-center hover:-translate-y-2" data-aos="zoom-in" data-aos-delay="100">
-                        <img src="https://images.unsplash.com/photo-1551024354-91a3f6954278?auto=format&fit=crop&w=1470&q=80" alt="Professor Hélio" class="w-full h-64 object-cover">
-                        <div class="p-6"><h3 class="text-xl font-bold">Hélio Martins</h3><p class="text-amber-400 font-medium">Violino Clássico</p></div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                    <!-- Professor Hélio -->
+                    <div class="liquid-glass overflow-hidden text-center group" data-aos="zoom-in" data-aos-delay="100">
+                        <img src="https://images.unsplash.com/photo-1551024354-91a3f6954278?auto=format&fit=crop&w=800&q=80" alt="Professor Hélio" class="w-full h-64 object-cover object-center transform group-hover:scale-105 transition-transform duration-300">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold">Hélio – Violinista</h3>
+                            <p class="highlight-blue font-medium mb-3">Técnica e Expressão</p>
+                            <p class="text-sm text-gray-300">Com vasta experiência orquestral, Hélio foca na técnica apurada e na interpretação expressiva, guiando os alunos na construção de uma base clássica sólida.</p>
+                        </div>
                     </div>
-                    <div class="liquid-glass overflow-hidden text-center hover:-translate-y-2" data-aos="zoom-in" data-aos-delay="200">
-                        <img src="https://images.unsplash.com/photo-1542652694-469b45a30898?auto=format&fit=crop&w=1470&q=80" alt="Professor Emanuel" class="w-full h-64 object-cover">
-                        <div class="p-6"><h3 class="text-xl font-bold">Emanuel Silva</h3><p class="text-amber-400 font-medium">Violino Popular</p></div>
+                    <!-- Professor Emanuel -->
+                    <div class="liquid-glass overflow-hidden text-center group" data-aos="zoom-in" data-aos-delay="200">
+                        <img src="https://images.unsplash.com/photo-1542652694-469b45a30898?auto=format&fit=crop&w=800&q=80" alt="Professor Emanuel" class="w-full h-64 object-cover object-center transform group-hover:scale-105 transition-transform duration-300">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold">Emanuel – Violinista</h3>
+                            <p class="highlight-blue font-medium mb-3">Criatividade e Improviso</p>
+                            <p class="text-sm text-gray-300">Especialista em improvisação, Emanuel traz uma perspectiva dinâmica, inspirando os alunos a explorarem sua própria voz musical e a se conectarem com a música de forma autêntica.</p>
+                        </div>
                     </div>
-                    <div class="liquid-glass overflow-hidden text-center hover:-translate-y-2" data-aos="zoom-in" data-aos-delay="300">
-                        <img src="https://images.unsplash.com/photo-1581898799432-c73ac706240d?auto=format&fit=crop&w=1470&q=80" alt="Projeto de Música" class="w-full h-64 object-cover">
-                        <div class="p-6"><h3 class="text-xl font-bold">Nosso Projeto</h3><p class="text-amber-400 font-medium">Inclusão Musical</p></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Igreja e Apoiadores -->
-        <section id="church" class="py-24">
-            <div class="container mx-auto px-4">
-                <div class="text-center mb-16" data-aos="fade-up">
-                    <h2 class="section-title gradient-text">Parceria de Sucesso</h2>
-                    <p class="section-subtitle">A união com a Igreja Luterana e o apoio de pessoas incríveis é o que nos move.</p>
-                </div>
-                <div class="grid md:grid-cols-5 gap-12 items-center">
-                    <div class="md:col-span-2" data-aos="fade-right">
-                        <img src="https://images.unsplash.com/photo-1507692049682-a25121b6a71e?auto=format&fit=crop&w=1470&q=80" alt="Igreja parceira" class="rounded-2xl shadow-2xl shadow-blue-900/20 w-full h-auto">
-                    </div>
-                    <div class="md:col-span-3 liquid-glass p-8 md:p-10" data-aos="fade-left">
-                        <h3 class="text-2xl font-bold mb-4 text-amber-300">Apoio Fundamental</h3>
-                        <p class="text-gray-300 mb-6">A Igreja Luterana é o pilar do nosso projeto, cedendo o espaço para aulas e apresentações e nos conectando com a comunidade. Esta parceria é a prova de que a união entre fé, arte e educação pode gerar frutos maravilhosos.</p>
-                        <h4 class="font-bold mb-4">Nossos Apoiadores:</h4>
-                        <div class="flex flex-wrap gap-4">
-                            <div class="text-center"><img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Apoiador" class="w-16 h-16 mx-auto rounded-full border-2 border-amber-400/50"><p class="text-xs mt-1">Ana Lúcia</p></div>
-                            <div class="text-center"><img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Apoiador" class="w-16 h-16 mx-auto rounded-full border-2 border-amber-400/50"><p class="text-xs mt-1">Carlos E.</p></div>
-                            <div class="text-center"><img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Apoiador" class="w-16 h-16 mx-auto rounded-full border-2 border-amber-400/50"><p class="text-xs mt-1">Mariana S.</p></div>
-                            <div class="text-center"><img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Apoiador" class="w-16 h-16 mx-auto rounded-full border-2 border-amber-400/50"><p class="text-xs mt-1">Pastor João</p></div>
+                     <!-- Projeto Musikantiga -->
+                    <div class="liquid-glass overflow-hidden text-center group" data-aos="zoom-in" data-aos-delay="300">
+                        <img src="https://images.unsplash.com/photo-1581898799432-c73ac706240d?auto=format&fit=crop&w=800&q=80" alt="Projeto Musikantiga" class="w-full h-64 object-cover object-center transform group-hover:scale-105 transition-transform duration-300">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold">Musikantiga</h3>
+                            <p class="highlight-blue font-medium mb-3">Direção Artística e Pedagógica</p>
+                            <p class="text-sm text-gray-300">Musikantiga é a filosofia que nos une. Somos uma plataforma de fomento à cultura, criando um ambiente de aprendizado rico, colaborativo e inspirador para todos.</p>
                         </div>
                     </div>
                 </div>
@@ -309,26 +290,26 @@
         <section id="contact" class="py-24">
             <div class="container mx-auto px-4">
                 <div class="text-center mb-16" data-aos="fade-up">
-                    <h2 class="section-title gradient-text">Entre em Contato</h2>
-                    <p class="section-subtitle">Tire suas dúvidas, agende uma aula experimental ou junte-se a nós como apoiador.</p>
+                    <h2 class="section-title highlight-text">Entre em Contato</h2>
+                    <p class="section-subtitle">Tire suas dúvidas, agende sua aula de descoberta ou junte-se a nós nesta jornada musical.</p>
                 </div>
                 <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-8 liquid-glass p-8 md:p-12">
                     <div data-aos="fade-right">
-                        <h3 class="text-2xl font-bold mb-6 text-amber-300">Envie uma Mensagem</h3>
+                        <h3 class="text-2xl font-bold mb-6 highlight-blue">Envie uma Mensagem</h3>
                         <form class="space-y-4">
-                            <input type="text" placeholder="Seu Nome" class="w-full bg-gray-800/50 border border-gray-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-amber-400 transition">
-                            <input type="email" placeholder="Seu Email" class="w-full bg-gray-800/50 border border-gray-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-amber-400 transition">
-                            <textarea placeholder="Sua Mensagem" rows="4" class="w-full bg-gray-800/50 border border-gray-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-amber-400 transition"></textarea>
-                            <button type="submit" class="w-full gradient-button text-white py-3 rounded-full font-bold transition">Enviar</button>
+                            <input type="text" placeholder="Seu Nome" class="w-full bg-gray-800/50 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-sky-500 transition">
+                            <input type="email" placeholder="Seu Email" class="w-full bg-gray-800/50 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-sky-500 transition">
+                            <textarea placeholder="Sua Mensagem" rows="4" class="w-full bg-gray-800/50 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-sky-500 transition"></textarea>
+                            <button type="submit" class="w-full button-blue text-white py-3 rounded-full font-bold">Enviar</button>
                         </form>
                     </div>
                     <div data-aos="fade-left" class="md:pl-8">
-                        <h3 class="text-2xl font-bold mb-6 text-amber-300">Informações</h3>
+                        <h3 class="text-2xl font-bold mb-6 highlight-blue">Informações</h3>
                         <div class="space-y-6 text-sm">
-                             <div class="flex items-start"><i class="fas fa-map-marker-alt text-amber-400 mt-1 mr-4 w-5 text-center"></i><div><strong class="text-white block">Endereço</strong><p class="text-gray-300">Rua da Música, 123 - Centro, São Paulo/SP</p></div></div>
-                             <div class="flex items-start"><i class="fab fa-whatsapp text-amber-400 mt-1 mr-4 w-5 text-center"></i><div><strong class="text-white block">WhatsApp</strong><p class="text-gray-300">(11) 98765-4321</p></div></div>
-                             <div class="flex items-start"><i class="fas fa-envelope text-amber-400 mt-1 mr-4 w-5 text-center"></i><div><strong class="text-white block">Email</strong><p class="text-gray-300">contato@projetoviolino.com</p></div></div>
-                             <div class="flex items-start"><i class="fas fa-clock text-amber-400 mt-1 mr-4 w-5 text-center"></i><div><strong class="text-white block">Horários</strong><p class="text-gray-300">Aulas aos Sábados: 9h às 12h</p></div></div>
+                             <div class="flex items-start"><i class="fas fa-map-marker-alt highlight-blue mt-1 mr-4 w-5 text-center"></i><div><strong class="text-white block">Endereço</strong><p class="text-gray-300">Rua da Música, 123 - Centro, São Paulo/SP</p></div></div>
+                             <div class="flex items-start"><i class="fab fa-whatsapp highlight-blue mt-1 mr-4 w-5 text-center"></i><div><strong class="text-white block">WhatsApp</strong><p class="text-gray-300">(11) 98765-4321</p></div></div>
+                             <div class="flex items-start"><i class="fas fa-envelope highlight-blue mt-1 mr-4 w-5 text-center"></i><div><strong class="text-white block">Email</strong><p class="text-gray-300">contato@musikantiga.com</p></div></div>
+                             <div class="flex items-start"><i class="fas fa-clock highlight-blue mt-1 mr-4 w-5 text-center"></i><div><strong class="text-white block">Horários</strong><p class="text-gray-300">Aulas aos Sábados: 9h às 12h</p></div></div>
                         </div>
                     </div>
                 </div>
@@ -340,12 +321,12 @@
     <footer class="border-t border-white/10 mt-24 py-12">
         <div class="container mx-auto px-4 text-center text-gray-400">
             <div class="flex justify-center space-x-6 mb-6">
-                <a href="#" class="hover:text-amber-300 transition"><i class="fab fa-facebook-f fa-lg"></i></a>
-                <a href="#" class="hover:text-amber-300 transition"><i class="fab fa-instagram fa-lg"></i></a>
-                <a href="#" class="hover:text-amber-300 transition"><i class="fab fa-youtube fa-lg"></i></a>
+                <a href="#" class="hover:text-sky-300 transition"><i class="fab fa-facebook-f fa-lg"></i></a>
+                <a href="#" class="hover:text-sky-300 transition"><i class="fab fa-instagram fa-lg"></i></a>
+                <a href="#" class="hover:text-sky-300 transition"><i class="fab fa-youtube fa-lg"></i></a>
             </div>
-            <p class="text-sm">© 2023 Projeto Violino. Todos os direitos reservados.</p>
-            <p class="text-xs mt-2">Uma iniciativa comunitária para a difusão da arte e cultura.</p>
+            <p class="text-sm">© 2024 Musikantiga. Todos os direitos reservados.</p>
+            <p class="text-xs mt-2">Uma iniciativa para a difusão da arte e da educação musical.</p>
         </div>
     </footer>
 
@@ -357,7 +338,7 @@
         const mobileMenu = document.getElementById('mobile-menu');
         menuToggle.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
         
-        document.querySelectorAll('#mobile-menu a').forEach(link => {
+        document.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
         });
     </script>
