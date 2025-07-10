@@ -1,12 +1,17 @@
 <!DOCTYPE html>
+<!-- O 'dark' class será adicionado/removido via JS -->
 <html lang="pt-BR" class="">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aprenda Violino e Teoria Musical | Projeto Musikantiga</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome (Ícones) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- AOS (Animação de Scroll) -->
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
@@ -94,10 +99,15 @@
             color: #ffffff;
             transition: all 0.3s ease;
         }
-        .button-blue:hover {
+        .button-blue:hover:not(:disabled) {
             background-color: #0284c7;
             box-shadow: 0 0 20px rgba(14, 165, 233, 0.5);
             transform: translateY(-2px);
+        }
+        .button-blue:disabled {
+            cursor: not-allowed;
+            background-color: #0ea5e9;
+            opacity: 0.7;
         }
         .button-outline-blue {
             border: 1px solid #0ea5e9;
@@ -117,6 +127,7 @@
 </head>
 <body class="transition-colors duration-300">
     
+    <!-- Cabeçalho -->
     <header class="liquid-glass-header fixed w-full z-50 top-0">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
             <a href="#home" class="flex items-center space-x-2">
@@ -129,8 +140,10 @@
                     <a href="#metodologia" class="nav-link">Jornada Musical</a>
                     <a href="#biblioteca" class="nav-link">Biblioteca</a>
                     <a href="#teachers" class="nav-link">Professores</a>
+                    <a href="#gallery" class="nav-link">Galeria</a>
                     <a href="#contact" class="nav-link">Contato</a>
                 </nav>
+                <!-- BOTÃO DE TEMA -->
                 <button id="theme-toggle" class="text-lg highlight-blue hover:scale-110 transition-transform">
                     <i id="theme-toggle-dark-icon" class="fas fa-moon"></i>
                     <i id="theme-toggle-light-icon" class="fas fa-sun hidden"></i>
@@ -146,12 +159,14 @@
                 <li><a href="#metodologia" class="nav-link">Jornada Musical</a></li>
                 <li><a href="#biblioteca" class="nav-link">Biblioteca</a></li>
                 <li><a href="#teachers" class="nav-link">Professores</a></li>
+                <li><a href="#gallery" class="nav-link">Galeria</a></li>
                 <li><a href="#contact" class="nav-link">Contato</a></li>
             </ul>
         </div>
     </header>
 
     <main>
+        <!-- Hero Section -->
         <section id="home" class="relative min-h-screen flex flex-col items-center justify-center text-center px-4 pt-20">
             <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1612299273574-d833ac798e83?auto=format&fit=crop&w=1470&q=80')] bg-cover bg-center opacity-20 dark:opacity-20 opacity-30 bg-fixed"></div>
             <div class="absolute inset-0 bg-gradient-to-b from-transparent to-slate-100 dark:to-[#0f172a]"></div>
@@ -173,6 +188,7 @@
             </a>
         </section>
         
+        <!-- Sobre o Projeto -->
         <section id="project" class="py-24">
             <div class="container mx-auto px-4">
                 <div class="text-center mb-16" data-aos="fade-up">
@@ -192,12 +208,13 @@
                         </div>
                     </div>
                     <div data-aos="fade-left" class="order-1 md:order-2">
-                        <img src="photos/EstudandoPartituras.jpg" alt="Crianças aprendendo violino" class="rounded-2xl shadow-xl dark:shadow-blue-900/20 w-full h-auto">
+                        <img src="https://images.unsplash.com/photo-1524230659-c34822d42cb1?auto=format&fit=crop&w=1350&q=80" alt="Crianças aprendendo violino" class="rounded-2xl shadow-xl dark:shadow-blue-900/20 w-full h-auto object-cover">
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- Como Funciona (Linha do Tempo) -->
         <section id="metodologia" class="py-24 bg-white/30 dark:bg-slate-900/50">
             <div class="container mx-auto px-4">
                 <div class="text-center mb-20" data-aos="fade-up">
@@ -223,9 +240,36 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- ✨ Ferramenta de IA para Plano de Estudos -->
+                <div class="mt-24 text-center" data-aos="fade-up">
+                    <h3 class="text-3xl font-bold mb-4 highlight-blue">✨ Crie seu Plano de Estudo Personalizado</h3>
+                    <p class="section-subtitle mb-8">Diga-nos seu nível e seus objetivos, e nosso Maestro Digital criará um plano de estudos inicial para você.</p>
+                    <div class="max-w-2xl mx-auto liquid-glass p-8">
+                        <div class="space-y-4">
+                            <div>
+                                <label for="user-level" class="block text-left font-medium text-secondary mb-2">Qual é o seu nível/experiência com o violino?</label>
+                                <input type="text" id="user-level" placeholder="Ex: Sou iniciante, nunca toquei antes." class="w-full bg-slate-200 dark:bg-gray-800/50 border border-slate-300 dark:border-gray-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-sky-500 transition text-sm">
+                            </div>
+                            <div>
+                                <label for="user-goal" class="block text-left font-medium text-secondary mb-2">Qual é o seu principal objetivo musical?</label>
+                                <input type="text" id="user-goal" placeholder="Ex: Quero tocar a música do meu filme favorito." class="w-full bg-slate-200 dark:bg-gray-800/50 border border-slate-300 dark:border-gray-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-sky-500 transition text-sm">
+                            </div>
+                            <button id="generate-plan-btn" class="w-full button-blue font-bold py-3 rounded-full flex items-center justify-center">
+                                <span id="btn-text">Gerar Plano de Estudos</span>
+                                <div id="loading-spinner" class="hidden w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin ml-3"></div>
+                            </button>
+                        </div>
+                        <div id="study-plan-result" class="mt-6 text-left bg-slate-200/50 dark:bg-gray-800/50 rounded-lg p-6 hidden">
+                             <h4 class="font-bold text-xl mb-4 text-primary">Seu Plano de Estudos Sugerido:</h4>
+                             <pre id="plan-output" class="whitespace-pre-wrap text-secondary text-sm leading-relaxed" style="font-family: 'Inter', sans-serif;"></pre>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
+        <!-- Biblioteca de Partituras -->
         <section id="biblioteca" class="py-24">
             <div class="container mx-auto px-4">
                 <div class="text-center mb-16" data-aos="fade-up">
@@ -233,42 +277,51 @@
                     <p class="section-subtitle">Explore nossa coleção gratuita. Clique em qualquer partitura para ver mais detalhes e baixar.</p>
                 </div>
                 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
+                    <!-- Card de Partitura 1 -->
                     <div class="liquid-glass p-4 text-center group" data-aos="fade-up">
                         <a href="#" class="block overflow-hidden rounded-lg mb-4"><img src="https://i.imgur.com/kS5k55L.png" alt="Partitura Suzuki 1" class="w-full h-auto transform group-hover:scale-105 transition-transform duration-300"></a>
                         <h3 class="font-bold text-secondary">Suzuki Método 1</h3><p class="text-sm highlight-blue mb-3">S. Suzuki</p><p class="text-sm text-slate-500 dark:text-slate-400">(Indisponivel para download, apenas para retirada local)</p>
                     </div>
+                    <!-- Card de Partitura 2 -->
                     <div class="liquid-glass p-4 text-center group" data-aos="fade-up" data-aos-delay="50">
                         <a href="#" class="block overflow-hidden rounded-lg mb-4"><img src="https://i.imgur.com/kS5k55L.png" alt="Partitura Suzuki 2" class="w-full h-auto transform group-hover:scale-105 transition-transform duration-300"></a>
                         <h3 class="font-bold text-secondary">Suzuki Método 2</h3><p class="text-sm highlight-blue mb-3">S. Suzuki</p><p class="text-sm text-slate-500 dark:text-slate-400">(Indisponivel para download, apenas para retirada local)</p>
                     </div>
+                    <!-- Card de Partitura 3 -->
                     <div class="liquid-glass p-4 text-center group" data-aos="fade-up" data-aos-delay="100">
-                        <a href="#" class="block overflow-hidden rounded-lg mb-4"><img src="https://i.imgur.com/vHqQO7b.png" alt="Partitura Twinkle Twinkle" class="w-full h-auto transform group-hover:scale-105 transition-transform duration-300"></a>
+                        <a href="#" class="block overflow-hidden rounded-lg mb-4"><img src="https://i.imgur.com/vHqQO7b.png" alt="Partitura Brilha, Estrelinha" class="w-full h-auto transform group-hover:scale-105 transition-transform duration-300"></a>
                         <h3 class="font-bold text-secondary">Brilha, Estrelinha</h3><p class="text-sm highlight-blue mb-3">Tradicional</p><a href="#" class="text-sm font-semibold text-gray-500 hover:text-sky-500">Ver Partitura →</a>
                     </div>
+                    <!-- Card de Partitura 4 -->
                     <div class="liquid-glass p-4 text-center group" data-aos="fade-up" data-aos-delay="150">
                         <a href="#" class="block overflow-hidden rounded-lg mb-4"><img src="https://i.imgur.com/pYxRj9A.png" alt="Partitura Minueto de Bach" class="w-full h-auto transform group-hover:scale-105 transition-transform duration-300"></a>
-                        <h3 class="font-bold text-secondary">Minueto em Sol</h3><p class="text-sm highlight-blue mb-3">J. S. Bach</p><a href="#" class="text-sm font-semibold text-gray-500 hover:text-sky-500">Ver Partitura →</a>
+                        <h3 class="font-bold text-secondary">Minuet. de Bach</h3><p class="text-sm highlight-blue mb-3">J. S. Bach</p><a href="#" class="text-sm font-semibold text-gray-500 hover:text-sky-500">Ver Partitura →</a>
                     </div>
+                    <!-- Card de Partitura 5 -->
                     <div class="liquid-glass p-4 text-center group" data-aos="fade-up" data-aos-delay="200">
                         <a href="#" class="block overflow-hidden rounded-lg mb-4"><img src="https://i.imgur.com/kS5k55L.png" alt="Partitura Ode à Alegria" class="w-full h-auto transform group-hover:scale-105 transition-transform duration-300"></a>
                         <h3 class="font-bold text-secondary">Ode à Alegria</h3><p class="text-sm highlight-blue mb-3">L. v. Beethoven</p><a href="#" class="text-sm font-semibold text-gray-500 hover:text-sky-500">Ver Partitura →</a>
                     </div>
-                     <div class="liquid-glass p-4 text-center group" data-aos="fade-up" data-aos-delay="250">
+                     <!-- Card de Partitura 6 -->
+                    <div class="liquid-glass p-4 text-center group" data-aos="fade-up" data-aos-delay="250">
                         <a href="#" class="block overflow-hidden rounded-lg mb-4"><img src="https://i.imgur.com/pYxRj9A.png" alt="Partitura Pachelbel" class="w-full h-auto transform group-hover:scale-105 transition-transform duration-300"></a>
                         <h3 class="font-bold text-secondary">Cânone em Ré</h3><p class="text-sm highlight-blue mb-3">J. Pachelbel</p><a href="#" class="text-sm font-semibold text-gray-500 hover:text-sky-500">Ver Partitura →</a>
                     </div>
-                     <div class="liquid-glass p-4 text-center group" data-aos="fade-up" data-aos-delay="300">
+                     <!-- Card de Partitura 7 -->
+                    <div class="liquid-glass p-4 text-center group" data-aos="fade-up" data-aos-delay="300">
                         <a href="#" class="block overflow-hidden rounded-lg mb-4"><img src="https://i.imgur.com/vHqQO7b.png" alt="Partitura Vivaldi" class="w-full h-auto transform group-hover:scale-105 transition-transform duration-300"></a>
                         <h3 class="font-bold text-secondary">As Quatro Estações</h3><p class="text-sm highlight-blue mb-3">A. Vivaldi</p><a href="#" class="text-sm font-semibold text-gray-500 hover:text-sky-500">Ver Partitura →</a>
                     </div>
-                     <div class="liquid-glass p-4 text-center group" data-aos="fade-up" data-aos-delay="350">
-                        <a href="#" class="block overflow-hidden rounded-lg mb-4"><img src="https://i.imgur.com/kS5k55L.png" alt="Partitura Mozart" class="w-full h-auto transform group-hover:scale-105 transition-transform duration-300"></a>
-                        <h3 class="font-bold text-secondary">Eine kleine Nachtmusik</h3><p class="text-sm highlight-blue mb-3">W. A. Mozart</p><a href="#" class="text-sm font-semibold text-gray-500 hover:text-sky-500">Ver Partitura →</a>
+                     <!-- Card de Partitura 8 (NOVO) -->
+                    <div class="liquid-glass p-4 text-center group" data-aos="fade-up" data-aos-delay="350">
+                        <a href="#" class="block overflow-hidden rounded-lg mb-4"><img src="https://i.imgur.com/kS5k55L.png" alt="Partitura de Escalas" class="w-full h-auto transform group-hover:scale-105 transition-transform duration-300"></a>
+                        <h3 class="font-bold text-secondary">Escalas Violino</h3><p class="text-sm highlight-blue mb-3">Estudo Técnico</p><a href="#" class="text-sm font-semibold text-gray-500 hover:text-sky-500">Ver Partitura →</a>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- Professores -->
         <section id="teachers" class="py-24 bg-white/30 dark:bg-slate-900/50">
             <div class="container mx-auto px-4">
                 <div class="text-center mb-16" data-aos="fade-up">
@@ -292,49 +345,68 @@
             </div>
         </section>
 
-        <section id="contact" class="py-24">
+        <!-- Galeria de Fotos -->
+        <section id="gallery" class="py-24">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <h2 class="section-title highlight-text">Nossos Momentos</h2>
+                    <p class="section-subtitle">Um pouco dos nossos encontros, apresentações e da alegria de fazer música juntos.</p>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="grid gap-4">
+                        <div data-aos="fade-up" data-aos-delay="0"><img class="h-auto max-w-full rounded-lg shadow-lg hover:shadow-sky-500/30 transition-shadow duration-300" src="https://images.unsplash.com/photo-1581898799432-c73ac706240d?auto=format&fit=crop&w=800&q=80" alt="Alunos em apresentação de violino"></div>
+                        <div data-aos="fade-up" data-aos-delay="100"><img class="h-auto max-w-full rounded-lg shadow-lg hover:shadow-sky-500/30 transition-shadow duration-300" src="https://images.unsplash.com/photo-1511192336575-5a79af67d629?auto=format&fit=crop&w=800&q=80" alt="Detalhe de um violino"></div>
+                    </div>
+                    <div class="grid gap-4">
+                        <div data-aos="fade-up" data-aos-delay="200"><img class="h-auto max-w-full rounded-lg shadow-lg hover:shadow-sky-500/30 transition-shadow duration-300" src="https://images.unsplash.com/photo-1605859449342-944b58a75565?auto=format&fit=crop&w=800&q=80" alt="Professor ensinando aluna"></div>
+                        <div data-aos="fade-up" data-aos-delay="300"><img class="h-auto max-w-full rounded-lg shadow-lg hover:shadow-sky-500/30 transition-shadow duration-300" src="https://images.unsplash.com/photo-1598398169996-2cf0d338d7a4?auto=format&fit=crop&w=800&q=80" alt="Orquestra jovem se apresentando"></div>
+                    </div>
+                    <div class="grid gap-4">
+                        <div data-aos="fade-up" data-aos-delay="400"><img class="h-auto max-w-full rounded-lg shadow-lg hover:shadow-sky-500/30 transition-shadow duration-300" src="https://images.unsplash.com/photo-1550291652-6ea9114a47b1?auto=format&fit=crop&w=800&q=80" alt="Músico tocando violino com paixão"></div>
+                        <div data-aos="fade-up" data-aos-delay="500"><img class="h-auto max-w-full rounded-lg shadow-lg hover:shadow-sky-500/30 transition-shadow duration-300" src="https://images.unsplash.com/photo-1562963643-8e88096a1808?auto=format&fit=crop&w=800&q=80" alt="Aula de música em grupo"></div>
+                    </div>
+                    <div class="grid gap-4">
+                        <div data-aos="fade-up" data-aos-delay="600"><img class="h-auto max-w-full rounded-lg shadow-lg hover:shadow-sky-500/30 transition-shadow duration-300" src="https://images.unsplash.com/photo-1542652694-469b45a30898?auto=format&fit=crop&w=800&q=80" alt="Violinista em close-up"></div>
+                        <div data-aos="fade-up" data-aos-delay="700"><img class="h-auto max-w-full rounded-lg shadow-lg hover:shadow-sky-500/30 transition-shadow duration-300" src="https://images.unsplash.com/photo-1520523839598-bd7e23a59245?auto=format&fit=crop&w=800&q=80" alt="Concerto de música clássica"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contato -->
+        <section id="contact" class="py-24 bg-white/30 dark:bg-slate-900/50">
             <div class="container mx-auto px-4">
                 <div class="text-center mb-16" data-aos="fade-up">
                     <h2 class="section-title highlight-text">Entre em Contato</h2>
                     <p class="section-subtitle">Tire suas dúvidas, agende sua aula de descoberta ou junte-se a nós nesta jornada musical.</p>
                 </div>
-                <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-8 liquid-glass p-8 md:p-12">
-                    <div data-aos="fade-right">
-                        <h3 class="text-2xl font-bold mb-6 highlight-blue">Envie uma Mensagem</h3>
-                        <form class="space-y-4">
-                            <input type="text" placeholder="Seu Nome" class="w-full bg-slate-200 dark:bg-gray-800/50 border border-slate-300 dark:border-gray-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-sky-500 transition">
-                            <input type="email" placeholder="Seu Email" class="w-full bg-slate-200 dark:bg-gray-800/50 border border-slate-300 dark:border-gray-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-sky-500 transition">
-                            <textarea placeholder="Sua Mensagem" rows="4" class="w-full bg-slate-200 dark:bg-gray-800/50 border border-slate-300 dark:border-gray-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-sky-500 transition"></textarea>
-                            <button type="submit" class="w-full button-blue font-bold py-3 rounded-full">Enviar</button>
-                        </form>
-                    </div>
-                    <div data-aos="fade-left" class="md:pl-8">
-                        <h3 class="text-2xl font-bold mb-6 highlight-blue">Informações</h3>
-                        <div class="space-y-6 text-sm">
-                             <div class="flex items-start"><i class="fas fa-map-marker-alt highlight-blue mt-1 mr-4 w-5 text-center"></i><div><strong class="text-secondary block">Endereço</strong><p>Rua da Música, 123 - Centro, São Paulo/SP</p></div></div>
-                             <div class="flex items-start"><i class="fab fa-whatsapp highlight-blue mt-1 mr-4 w-5 text-center"></i><div><strong class="text-secondary block">WhatsApp</strong><p>(11) 98765-4321</p></div></div>
-                             <div class="flex items-start"><i class="fas fa-envelope highlight-blue mt-1 mr-4 w-5 text-center"></i><div><strong class="text-secondary block">Email</strong><p>contato@musikantiga.com</p></div></div>
-                             <div class="flex items-start"><i class="fas fa-clock highlight-blue mt-1 mr-4 w-5 text-center"></i><div><strong class="text-secondary block">Horários</strong><p>Aulas aos Sábados: 9h às 12h</p></div></div>
-                        </div>
+                <div class="max-w-2xl mx-auto liquid-glass p-8 md:p-12" data-aos="fade-up">
+                    <div class="space-y-8 text-base">
+                         <div class="flex items-start"><i class="fas fa-map-marker-alt highlight-blue mt-1 mr-4 w-5 text-center text-xl"></i><div><strong class="text-secondary block">Endereço</strong><p>Av. Hofman, 182 - Erval Seco, RS, 98390-000</p></div></div>
+                         <div class="flex items-start"><i class="fab fa-whatsapp highlight-blue mt-1 mr-4 w-5 text-center text-xl"></i><div><strong class="text-secondary block">WhatsApp</strong><p>(55) 99907-0868</p></div></div>
+                         <div class="flex items-start"><i class="fas fa-envelope highlight-blue mt-1 mr-4 w-5 text-center text-xl"></i><div><strong class="text-secondary block">Email</strong><p>Emanuelziegler3@gmail.com</p></div></div>
+                         <div class="flex items-start"><i class="fas fa-clock highlight-blue mt-1 mr-4 w-5 text-center text-xl"></i><div><strong class="text-secondary block">Horários</strong><p>Escolha do aluno!</p></div></div>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
+    <!-- Rodapé -->
     <footer class="border-t border-slate-200 dark:border-white/10 mt-24 py-12">
         <div class="container mx-auto px-4 text-center text-slate-500 dark:text-gray-400">
             <div class="flex justify-center space-x-6 mb-6">
-                <a href="https://www.facebook.com/emanuel.martins.7545708" class="hover:text-sky-500 transition" aria-label="Facebook"><i class="fab fa-facebook-f fa-lg"></i></a>
-                <a href="https://www.instagram.com/emanuel_zzie/" class="hover:text-sky-500 transition" aria-label="Instagram"><i class="fab fa-instagram fa-lg"></i></a>
-                <a href="https://github.com/emanueca" class="hover:text-sky-500 transition" aria-label="GitHub"><i class="fab fa-github fa-lg"></i></a>
-                <a href="https://www.jotform.com/workspace/" class="hover:text-sky-500 transition" aria-label="Formulários"><i class="fas fa-file-alt fa-lg"></i></a>
+                <a href="#" class="hover:text-sky-500 transition" aria-label="Facebook"><i class="fab fa-facebook-f fa-lg"></i></a>
+                <a href="#" class="hover:text-sky-500 transition" aria-label="Instagram"><i class="fab fa-instagram fa-lg"></i></a>
+                <a href="#" class="hover:text-sky-500 transition" aria-label="GitHub"><i class="fab fa-github fa-lg"></i></a>
+                <a href="#contact" class="hover:text-sky-500 transition" aria-label="Contato"><i class="fas fa-file-alt fa-lg"></i></a>
             </div>
-            <p class="text-sm">© 2025 Emanuel. Todos os direitos reservados.</p>
-            <p class="text-xs mt-2">Parte do Projeto Musikantiga – Educação musical acessível.</p>
+            <p class="text-sm">© 2024 Musikantiga. Todos os direitos reservados.</p>
+            <p class="text-xs mt-2">Uma iniciativa para a difusão da arte e da educação musical.</p>
         </div>
     </footer>
 
+    <!-- Scripts -->
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
         // AOS Animação
@@ -346,9 +418,11 @@
         if(menuToggle) {
             menuToggle.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
         }
-        document.querySelectorAll('#mobile-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                setTimeout(() => { if (!mobileMenu.classList.contains('hidden')) { mobileMenu.classList.add('hidden'); } }, 150);
+        document.querySelectorAll('#mobile-menu a, .nav-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                if(mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                     setTimeout(() => { mobileMenu.classList.add('hidden'); }, 150);
+                }
             });
         });
 
@@ -385,5 +459,78 @@
             setTheme(currentTheme === 'dark' ? 'light' : 'dark');
         });
     </script>
+    
+    <!-- Script para a API do Gemini -->
+    <script type="module">
+        const generateBtn = document.getElementById('generate-plan-btn');
+        const btnText = document.getElementById('btn-text');
+        const loadingSpinner = document.getElementById('loading-spinner');
+        const resultDiv = document.getElementById('study-plan-result');
+        const resultPre = document.getElementById('plan-output');
+        const userLevelInput = document.getElementById('user-level');
+        const userGoalInput = document.getElementById('user-goal');
+
+        generateBtn.addEventListener('click', async () => {
+            const userLevel = userLevelInput.value;
+            const userGoal = userGoalInput.value;
+
+            if (!userLevel || !userGoal) {
+                // Use a custom modal or a styled message instead of alert
+                resultPre.textContent = 'Por favor, preencha ambos os campos para gerar seu plano de estudos.';
+                resultDiv.classList.remove('hidden');
+                return;
+            }
+
+            // Show loading state
+            btnText.textContent = 'Gerando...';
+            loadingSpinner.classList.remove('hidden');
+            generateBtn.disabled = true;
+            resultDiv.classList.add('hidden');
+
+            const prompt = `Você é um professor de violino experiente e amigável chamado "Maestro Digital". Crie um plano de estudos semanal simples e motivador para um aluno com o seguinte perfil: Nível/Experiência: "${userLevel}". Objetivo: "${userGoal}". O plano deve ser dividido em seções claras (ex: Aquecimento, Técnica, Repertório, Teoria). Use um tom encorajador e dê dicas práticas. Formate a resposta usando Markdown, com cabeçalhos e listas. Comece com uma saudação amigável.`;
+
+            try {
+                let chatHistory = [];
+                chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+                const payload = { contents: chatHistory };
+                const apiKey = ""; // API key will be provided by the environment
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+                
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!response.ok) {
+                    throw new Error(`API error: ${response.statusText}`);
+                }
+                
+                const result = await response.json();
+
+                if (result.candidates && result.candidates.length > 0 &&
+                    result.candidates[0].content && result.candidates[0].content.parts &&
+                    result.candidates[0].content.parts.length > 0) {
+                    const text = result.candidates[0].content.parts[0].text;
+                    resultPre.textContent = text;
+                    resultDiv.classList.remove('hidden');
+                } else {
+                    resultPre.textContent = 'Desculpe, não foi possível gerar um plano de estudos no momento. Tente novamente mais tarde.';
+                    resultDiv.classList.remove('hidden');
+                }
+
+            } catch (error) {
+                console.error('Error calling Gemini API:', error);
+                resultPre.textContent = 'Ocorreu um erro ao se comunicar com o nosso assistente de IA. Por favor, verifique sua conexão e tente novamente.';
+                resultDiv.classList.remove('hidden');
+            } finally {
+                // Hide loading state
+                btnText.textContent = 'Gerar Plano de Estudos';
+                loadingSpinner.classList.add('hidden');
+                generateBtn.disabled = false;
+            }
+        });
+    </script>
+
 </body>
 </html>
