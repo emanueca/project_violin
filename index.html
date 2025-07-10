@@ -240,32 +240,6 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- ✨ Ferramenta de IA para Plano de Estudos -->
-                <div class="mt-24 text-center" data-aos="fade-up">
-                    <h3 class="text-3xl font-bold mb-4 highlight-blue">✨ Crie seu Plano de Estudo Personalizado</h3>
-                    <p class="section-subtitle mb-8">Diga-nos seu nível e seus objetivos, e nosso Maestro Digital criará um plano de estudos inicial para você.</p>
-                    <div class="max-w-2xl mx-auto liquid-glass p-8">
-                        <div class="space-y-4">
-                            <div>
-                                <label for="user-level" class="block text-left font-medium text-secondary mb-2">Qual é o seu nível/experiência com o violino?</label>
-                                <input type="text" id="user-level" placeholder="Ex: Sou iniciante, nunca toquei antes." class="w-full bg-slate-200 dark:bg-gray-800/50 border border-slate-300 dark:border-gray-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-sky-500 transition text-sm">
-                            </div>
-                            <div>
-                                <label for="user-goal" class="block text-left font-medium text-secondary mb-2">Qual é o seu principal objetivo musical?</label>
-                                <input type="text" id="user-goal" placeholder="Ex: Quero tocar a música do meu filme favorito." class="w-full bg-slate-200 dark:bg-gray-800/50 border border-slate-300 dark:border-gray-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-sky-500 transition text-sm">
-                            </div>
-                            <button id="generate-plan-btn" class="w-full button-blue font-bold py-3 rounded-full flex items-center justify-center">
-                                <span id="btn-text">Gerar Plano de Estudos</span>
-                                <div id="loading-spinner" class="hidden w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin ml-3"></div>
-                            </button>
-                        </div>
-                        <div id="study-plan-result" class="mt-6 text-left bg-slate-200/50 dark:bg-gray-800/50 rounded-lg p-6 hidden">
-                             <h4 class="font-bold text-xl mb-4 text-primary">Seu Plano de Estudos Sugerido:</h4>
-                             <pre id="plan-output" class="whitespace-pre-wrap text-secondary text-sm leading-relaxed" style="font-family: 'Inter', sans-serif;"></pre>
-                        </div>
-                    </div>
-                </div>
             </div>
         </section>
 
@@ -459,78 +433,5 @@
             setTheme(currentTheme === 'dark' ? 'light' : 'dark');
         });
     </script>
-    
-    <!-- Script para a API do Gemini -->
-    <script type="module">
-        const generateBtn = document.getElementById('generate-plan-btn');
-        const btnText = document.getElementById('btn-text');
-        const loadingSpinner = document.getElementById('loading-spinner');
-        const resultDiv = document.getElementById('study-plan-result');
-        const resultPre = document.getElementById('plan-output');
-        const userLevelInput = document.getElementById('user-level');
-        const userGoalInput = document.getElementById('user-goal');
-
-        generateBtn.addEventListener('click', async () => {
-            const userLevel = userLevelInput.value;
-            const userGoal = userGoalInput.value;
-
-            if (!userLevel || !userGoal) {
-                // Use a custom modal or a styled message instead of alert
-                resultPre.textContent = 'Por favor, preencha ambos os campos para gerar seu plano de estudos.';
-                resultDiv.classList.remove('hidden');
-                return;
-            }
-
-            // Show loading state
-            btnText.textContent = 'Gerando...';
-            loadingSpinner.classList.remove('hidden');
-            generateBtn.disabled = true;
-            resultDiv.classList.add('hidden');
-
-            const prompt = `Você é um professor de violino experiente e amigável chamado "Maestro Digital". Crie um plano de estudos semanal simples e motivador para um aluno com o seguinte perfil: Nível/Experiência: "${userLevel}". Objetivo: "${userGoal}". O plano deve ser dividido em seções claras (ex: Aquecimento, Técnica, Repertório, Teoria). Use um tom encorajador e dê dicas práticas. Formate a resposta usando Markdown, com cabeçalhos e listas. Comece com uma saudação amigável.`;
-
-            try {
-                let chatHistory = [];
-                chatHistory.push({ role: "user", parts: [{ text: prompt }] });
-                const payload = { contents: chatHistory };
-                const apiKey = ""; // API key will be provided by the environment
-                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-                
-                const response = await fetch(apiUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-
-                if (!response.ok) {
-                    throw new Error(`API error: ${response.statusText}`);
-                }
-                
-                const result = await response.json();
-
-                if (result.candidates && result.candidates.length > 0 &&
-                    result.candidates[0].content && result.candidates[0].content.parts &&
-                    result.candidates[0].content.parts.length > 0) {
-                    const text = result.candidates[0].content.parts[0].text;
-                    resultPre.textContent = text;
-                    resultDiv.classList.remove('hidden');
-                } else {
-                    resultPre.textContent = 'Desculpe, não foi possível gerar um plano de estudos no momento. Tente novamente mais tarde.';
-                    resultDiv.classList.remove('hidden');
-                }
-
-            } catch (error) {
-                console.error('Error calling Gemini API:', error);
-                resultPre.textContent = 'Ocorreu um erro ao se comunicar com o nosso assistente de IA. Por favor, verifique sua conexão e tente novamente.';
-                resultDiv.classList.remove('hidden');
-            } finally {
-                // Hide loading state
-                btnText.textContent = 'Gerar Plano de Estudos';
-                loadingSpinner.classList.add('hidden');
-                generateBtn.disabled = false;
-            }
-        });
-    </script>
-
 </body>
 </html>
