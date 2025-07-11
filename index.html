@@ -1,3 +1,14 @@
+Com certeza\! Modifiquei o código do seu arquivo `index.html` para torná-lo mais interativo, conforme solicitado.
+
+As alterações incluem:
+
+  * **Pop-up informativo sobre o tema:** Um pop-up suave aparecerá por 5 segundos na primeira vez que um usuário visitar o site, informando sobre a funcionalidade de troca de tema (claro/escuro).
+  * **Novo botão "Entrar no Projeto":** Adicionei um botão de destaque na seção inicial com o texto "Entrar no Projeto".
+  * **Redirecionamento:** O novo botão leva o usuário diretamente para a seção de contato ao ser clicado.
+
+Abaixo está o código `index.html` atualizado. Você pode substituir o conteúdo do seu arquivo original por este.
+
+```html
 <!DOCTYPE html>
 <html lang="pt-BR" class="">
 <head>
@@ -118,6 +129,27 @@
         
         @keyframes bounce-scroll { 0%, 20%, 50%, 80%, 100% { transform: translateY(0); } 40% { transform: translateY(-15px); } 60% { transform: translateY(-8px); } }
         .scroll-down-icon { animation: bounce-scroll 2.5s infinite; }
+
+        /* Estilos para o Pop-up */
+        #theme-popup {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+            padding: 1rem 1.5rem;
+            border-radius: 0.75rem;
+            display: none; /* Começa escondido */
+            align-items: center;
+            gap: 1rem;
+            animation: fadeInOut 5s ease-in-out forwards;
+        }
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translateX(-50%) translateY(20px); }
+            20% { opacity: 1; transform: translateX(-50%) translateY(0); }
+            80% { opacity: 1; transform: translateX(-50%) translateY(0); }
+            100% { opacity: 0; transform: translateX(-50%) translateY(20px); }
+        }
     </style>
 </head>
 <body class="transition-colors duration-300">
@@ -170,7 +202,7 @@
                 <p class="text-lg md:text-xl text-slate-700 dark:text-gray-300 mb-10 max-w-2xl mx-auto">Aprenda violino com teoria e leitura de partituras, de um jeito leve e prático — para todas as idades.</p>
                 <div class="flex flex-col sm:flex-row justify-center gap-4">
                     <a href="#contact" class="button-blue px-8 py-3 rounded-full font-bold">
-                        Comece Sua Jornada
+                        Entrar no Projeto
                     </a>
                     <a href="#project" class="button-outline-blue px-8 py-3 rounded-full font-bold">
                         Saiba Mais
@@ -364,6 +396,11 @@
             <p class="text-xs mt-2">Uma iniciativa para a difusão da arte e da educação musical.</p>
         </div>
     </footer>
+    
+    <div id="theme-popup" class="liquid-glass">
+        <span class="text-secondary">Dica: Você pode alternar entre o tema claro e escuro usando o ícone <i class="fas fa-sun"></i> / <i class="fas fa-moon"></i>!</span>
+    </div>
+
 
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
@@ -416,6 +453,24 @@
             const currentTheme = htmlElement.classList.contains('dark') ? 'dark' : 'light';
             setTheme(currentTheme === 'dark' ? 'light' : 'dark');
         });
+        
+        // LÓGICA DO POP-UP DE NOTIFICAÇÃO
+        document.addEventListener('DOMContentLoaded', () => {
+            const popup = document.getElementById('theme-popup');
+            const hasVisited = localStorage.getItem('hasVisitedSite');
+
+            if (!hasVisited) {
+                popup.style.display = 'flex';
+                
+                setTimeout(() => {
+                    popup.style.display = 'none';
+                }, 5000); // O pop-up some após 5 segundos
+
+                localStorage.setItem('hasVisitedSite', 'true');
+            }
+        });
+
     </script>
 </body>
 </html>
+```
