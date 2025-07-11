@@ -61,6 +61,7 @@ Este projeto foi desenvolvido utilizando as seguintes tecnologias:
 
 Para visualizar o projeto em seu navegador, siga estes passos simples:
 
+1. **Acesse o GitPages** do diretório: https://emanueca.github.io/project_name/#project
 1.  **Clone o Repositório** (se você estiver baixando o código do GitHub) ou **Baixe o arquivo `index.html`** diretamente.
 2.  **Abra o arquivo `index.html`** em seu navegador de preferência. 🌐
 
