@@ -1,18 +1,12 @@
-
 <!DOCTYPE html>
-<!-- O 'dark' class será adicionado/removido via JS -->
 <html lang="pt-BR" class="">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aprenda Violino e Teoria Musical | Projeto Musical</title>
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome (Ícones) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- AOS (Animação de Scroll) -->
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
@@ -128,7 +122,6 @@
 </head>
 <body class="transition-colors duration-300">
     
-    <!-- Cabeçalho -->
     <header class="liquid-glass-header fixed w-full z-50 top-0">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
             <a href="#home" class="flex items-center space-x-2">
@@ -142,9 +135,9 @@
                     <a href="#biblioteca" class="nav-link">Biblioteca</a>
                     <a href="#teachers" class="nav-link">Professores</a>
                     <a href="#gallery" class="nav-link">Galeria</a>
+                    <a href="https://form.jotform.com/251873218822056" class="nav-link" target="_blank">Inscreva-se</a>
                     <a href="#contact" class="nav-link">Contato</a>
                 </nav>
-                <!-- BOTÃO DE TEMA -->
                 <button id="theme-toggle" class="text-lg highlight-blue hover:scale-110 transition-transform">
                     <i id="theme-toggle-dark-icon" class="fas fa-moon"></i>
                     <i id="theme-toggle-light-icon" class="fas fa-sun hidden"></i>
@@ -161,13 +154,13 @@
                 <li><a href="#biblioteca" class="nav-link">Biblioteca</a></li>
                 <li><a href="#teachers" class="nav-link">Professores</a></li>
                 <li><a href="#gallery" class="nav-link">Galeria</a></li>
+                <li><a href="https://form.jotform.com/251873218822056" class="nav-link" target="_blank">Inscreva-se</a></li>
                 <li><a href="#contact" class="nav-link">Contato</a></li>
             </ul>
         </div>
     </header>
 
     <main>
-        <!-- Hero Section -->
         <section id="home" class="relative min-h-screen flex flex-col items-center justify-center text-center px-4 pt-20">
             <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1612299273574-d833ac798e83?auto=format&fit=crop&w=1470&q=80')] bg-cover bg-center opacity-20 dark:opacity-20 opacity-30 bg-fixed"></div>
             <div class="absolute inset-0 bg-gradient-to-b from-transparent to-slate-100 dark:to-[#0f172a]"></div>
@@ -189,7 +182,6 @@
             </a>
         </section>
         
-        <!-- Sobre o Projeto -->
         <section id="project" class="py-24">
             <div class="container mx-auto px-4">
                 <div class="text-center mb-16" data-aos="fade-up">
@@ -215,7 +207,6 @@
             </div>
         </section>
 
-        <!-- Como Funciona (Linha do Tempo) -->
         <section id="metodologia" class="py-24 bg-white/30 dark:bg-slate-900/50">
             <div class="container mx-auto px-4">
                 <div class="text-center mb-20" data-aos="fade-up">
@@ -229,7 +220,7 @@
                         <div class="w-full md:w-[47%] md:mr-auto p-8 liquid-glass">
                             <h3 class="text-2xl font-bold mb-4 highlight-blue text-center md:text-left">Iniciante (1–2 anos)</h3>
                             <p class="mb-4 text-sm">O ponto de partida da sua paixão pelo violino, construindo uma base sólida com confiança e apoio.</p>
-                            <ul class="space-y-3"><li class="flex items-start"><i class="fas fa-check-circle highlight-blue mr-3 mt-1"></i><div><strong class="text-secondary">Aula de Descoberta:</strong> Sua primeira experiência para sentir a magia do violino.</div></li><li class="flex items-start"><i class="fas fa-check-circle highlight-blue mr-3 mt-1"></i><div><strong class="text-secondary">Fundamentos Essenciais:</strong> Aprenda postura, manuseio do arco e som limpo.</div></li><li class="flex items-start"><i class="fas fa-check-circle highlight-blue mr-3 mt-1"></i><div><strong class="text-secondary">Método Suzuki:</strong> Iniciação a um dos métodos mais renomados.</div></li><li class="flex items-start"><i class="fas fa-check-circle highlight-blue mr-3 mt-1"></i><div><strong class="text-secondary">Primeiras Apresentações:</strong> Ganhe confiança em um ambiente acolhedor.</div></li></ul>
+                            <ul class="space-y-3"><li class="flex items-start"><i class="fas fa-check-circle highlight-blue mr-3 mt-1"></i><div><strong class="text-secondary">Aula de Descoberta:</strong> Sua primeira experiência para sentir a magia do violino.</div></li><li class="flex items-start"><i class="fas fa-check-circle highlight-blue mr-3 mt-1"></i><div><strong class="text-secondary">Fundamentos Essenciais:</strong> Aprenda postura, manuseio do arco e som limpo.</div></li><li class="flex items-start"><i class="fas fa-check-circle highlight-blue mr-3 mt-1"></i><div><strong class="text-secondary">Método Suzuki:</strong> Iniciação a um dos métodos mais renomeados.</div></li><li class="flex items-start"><i class="fas fa-check-circle highlight-blue mr-3 mt-1"></i><div><strong class="text-secondary">Primeiras Apresentações:</strong> Ganhe confiança em um ambiente acolhedor.</div></li></ul>
                         </div>
                     </div>
                     <div class="relative" data-aos="fade-left">
@@ -244,7 +235,6 @@
             </div>
         </section>
 
-        <!-- Biblioteca de Partituras -->
         <section id="biblioteca" class="py-24">
             <div class="container mx-auto px-4">
                 <div class="text-center mb-16" data-aos="fade-up">
@@ -252,43 +242,35 @@
                     <p class="section-subtitle">Explore nossa coleção gratuita. Clique em qualquer partitura para ver mais detalhes e baixar.</p>
                 </div>
                 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
-                    <!-- Card de Partitura 1 -->
                     <div class="liquid-glass p-4 text-center group" data-aos="fade-up">
                         <a href="#" class="block overflow-hidden rounded-lg mb-4"><img src="https://i.imgur.com/kS5k55L.png" alt="Partitura Suzuki 1" class="w-full h-auto transform group-hover:scale-105 transition-transform duration-300"></a>
                         <h3 class="font-bold text-secondary">Suzuki Método 1</h3><p class="text-sm highlight-blue mb-3">S. Suzuki</p><p class="text-sm text-slate-500 dark:text-slate-400">(Indisponivel para download, apenas para retirada local)</p>
                     </div>
-                    <!-- Card de Partitura 2 -->
                     <div class="liquid-glass p-4 text-center group" data-aos="fade-up" data-aos-delay="50">
                         <a href="#" class="block overflow-hidden rounded-lg mb-4"><img src="https://i.imgur.com/kS5k55L.png" alt="Partitura Suzuki 2" class="w-full h-auto transform group-hover:scale-105 transition-transform duration-300"></a>
                         <h3 class="font-bold text-secondary">Suzuki Método 2</h3><p class="text-sm highlight-blue mb-3">S. Suzuki</p><p class="text-sm text-slate-500 dark:text-slate-400">(Indisponivel para download, apenas para retirada local)</p>
                     </div>
-                    <!-- Card de Partitura 3 -->
                     <div class="liquid-glass p-4 text-center group" data-aos="fade-up" data-aos-delay="100">
                         <a href="photos/BrilhaBrilhamusescore.png" class="block overflow-hidden rounded-lg mb-4"><img src="photos/BrilhaBrilhamusescore.png" alt="Partitura Brilha, Estrelinha" class="w-full h-auto transform group-hover:scale-105 transition-transform duration-300"></a>
                         <h3 class="font-bold text-secondary">Brilha, Estrelinha</h3><p class="text-sm highlight-blue mb-3">Tradicional</p><a href="#" class="text-sm font-semibold text-gray-500 hover:text-sky-500">Ver Partitura →</a>
                     </div>
-                    <!-- Card de Partitura 4 -->
                     <div class="liquid-glass p-4 text-center group" data-aos="fade-up" data-aos-delay="150">
                         <a href="photos/Minuet. in g.jpg" class="block overflow-hidden rounded-lg mb-4"><img src="photos/Minuet. in g.jpg"alt="Partitura Minueto de Bach" class="w-full h-auto transform group-hover:scale-105 transition-transform duration-300"></a>
                         <h3 class="font-bold text-secondary">Minuet. de Bach in g.</h3><p class="text-sm highlight-blue mb-3">J. S. Bach</p><a href="#" class="text-sm font-semibold text-gray-500 hover:text-sky-500">Ver Partitura →</a>
                     </div>
-                    <!-- Card de Partitura 5 -->
                     <div class="liquid-glass p-4 text-center group" data-aos="fade-up" data-aos-delay="200">
                         <a href="photos/ode-a-alegria-v-7.jpg" class="block overflow-hidden rounded-lg mb-4"><img src="photos/ode-a-alegria-v-7.jpg" alt="Partitura Ode à Alegria" class="w-full h-auto transform group-hover:scale-105 transition-transform duration-300"></a>
                         <h3 class="font-bold text-secondary">Ode à Alegria</h3><p class="text-sm highlight-blue mb-3">L. v. Beethoven</p><a href="#" class="text-sm font-semibold text-gray-500 hover:text-sky-500">Ver Partitura →</a>
                     </div>
-                     <!-- Card de Partitura 6 -->
-                    <div class="liquid-glass p-4 text-center group" data-aos="fade-up" data-aos-delay="250">
+                     <div class="liquid-glass p-4 text-center group" data-aos="fade-up" data-aos-delay="250">
                         <a href="photos/Canon in D.png" class="block overflow-hidden rounded-lg mb-4"><img src="photos/Canon in D.png" alt="Partitura Pachelbel" class="w-full h-auto transform group-hover:scale-105 transition-transform duration-300"></a>
                         <h3 class="font-bold text-secondary">Canon in D</h3><p class="text-sm highlight-blue mb-3">J. Pachelbel</p><a href="#" class="text-sm font-semibold text-gray-500 hover:text-sky-500">Ver Partitura →</a>
                     </div>
-                     <!-- Card de Partitura 7 -->
-                    <div class="liquid-glass p-4 text-center group" data-aos="fade-up" data-aos-delay="300">
+                     <div class="liquid-glass p-4 text-center group" data-aos="fade-up" data-aos-delay="300">
                         <a href="photos/as-quatro-estacoes-v-3.jpg" class="block overflow-hidden rounded-lg mb-4"><img src="photos/as-quatro-estacoes-v-3.jpg" alt="Partitura Vivaldi" class="w-full h-auto transform group-hover:scale-105 transition-transform duration-300"></a>
                         <h3 class="font-bold text-secondary">As Quatro Estações</h3><p class="text-sm highlight-blue mb-3">A. Vivaldi</p><a href="#" class="text-sm font-semibold text-gray-500 hover:text-sky-500">Ver Partitura →</a>
                     </div>
-                     <!-- Card de Partitura 8 (NOVO) -->
-                    <div class="liquid-glass p-4 text-center group" data-aos="fade-up" data-aos-delay="350">
+                     <div class="liquid-glass p-4 text-center group" data-aos="fade-up" data-aos-delay="350">
                         <a href="photos/Escala-de-Do-Maior-Violino-Dedilhado.jpg" class="block overflow-hidden rounded-lg mb-4"><img src="photos/Escala-de-Do-Maior-Violino-Dedilhado.jpg" alt="Partitura de Escalas" class="w-full h-auto transform group-hover:scale-105 transition-transform duration-300"></a>
                         <h3 class="font-bold text-secondary">Escala de Dó</h3><p class="text-sm highlight-blue mb-3">Estudo Técnico</p><a href="#" class="text-sm font-semibold text-gray-500 hover:text-sky-500">Ver Partitura →</a>
                     </div>
@@ -296,7 +278,6 @@
             </div>
         </section>
 
-        <!-- Professores -->
         <section id="teachers" class="py-24 bg-white/30 dark:bg-slate-900/50">
             <div class="container mx-auto px-4">
                 <div class="text-center mb-16" data-aos="fade-up">
@@ -310,17 +291,16 @@
                     </div>
                     <div class="liquid-glass overflow-hidden text-center group" data-aos="zoom-in" data-aos-delay="200">
                         <img src="https://images.unsplash.com/photo-1542652694-469b45a30898?auto=format&fit=crop&w=800&q=80" alt="Professor Emanuel" class="w-full h-64 object-cover object-center transform group-hover:scale-105 transition-transform duration-300">
-                        <div class="p-6"><h3 class="text-xl font-bold text-secondary">Emanuel – Violinista</h3><p class="highlight-blue font-medium mb-3">Toca Violino antes dos 9 anos de idades!</p><p class="text-sm">Busca inspirar os alunos a explorarem seu dom musical, focando na partitura e teoria</p></div>
+                        <div class="p-6"><h3 class="text-xl font-bold text-secondary">Emanuel – Violinista</h3><p class="highlight-blue font-medium mb-3">Toca Violino desde os 9 anos de idade...</p><p class="text-sm">Busca inspirar os alunos a explorarem seu dom musical, focando na partitura e teoria</p></div>
                     </div>
                     <div class="liquid-glass overflow-hidden text-center group" data-aos="zoom-in" data-aos-delay="300">
                         <img src="https://images.unsplash.com/photo-1581898799432-c73ac706240d?auto=format&fit=crop&w=800&q=80" alt="Projeto Musikantiga" class="w-full h-64 object-cover object-center transform group-hover:scale-105 transition-transform duration-300">
-                        <div class="p-6"><h3 class="text-xl font-bold text-secondary">Musikantiga</h3><p class="highlight-blue font-medium mb-3">Direção Artística</p><p class="text-sm">Projeto presente des de sempre na música</p></div>
+                        <div class="p-6"><h3 class="text-xl font-bold text-secondary">Musikantiga</h3><p class="highlight-blue font-medium mb-3">Direção Artística</p><p class="text-sm">Projeto presente desde sempre na música</p></div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Galeria de Fotos -->
         <section id="gallery" class="py-24">
             <div class="container mx-auto px-4">
                 <div class="text-center mb-16" data-aos="fade-up">
@@ -348,7 +328,6 @@
             </div>
         </section>
 
-        <!-- Contato -->
         <section id="contact" class="py-24 bg-white/30 dark:bg-slate-900/50">
             <div class="container mx-auto px-4">
                 <div class="text-center mb-16" data-aos="fade-up">
@@ -362,12 +341,17 @@
                          <div class="flex items-start"><i class="fas fa-envelope highlight-blue mt-1 mr-4 w-5 text-center text-xl"></i><div><strong class="text-secondary block">Email</strong><p>Emanuelziegler3@gmail.com</p></div></div>
                          <div class="flex items-start"><i class="fas fa-clock highlight-blue mt-1 mr-4 w-5 text-center text-xl"></i><div><strong class="text-secondary block">Horários</strong><p>Escolha do aluno!</p></div></div>
                     </div>
+                    <div class="mt-10 text-center border-t pt-8 border-slate-200 dark:border-white/10">
+                        <p class="text-lg font-semibold text-secondary mb-6">Pronto para começar? Garanta sua vaga agora mesmo!</p>
+                        <a href="https://form.jotform.com/251873218822056" target="_blank" class="button-blue px-8 py-3 rounded-full font-bold inline-block text-lg">
+                            <i class="fas fa-user-plus mr-2"></i> Inscreva-se Já!
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- Rodapé -->
     <footer class="border-t border-slate-200 dark:border-white/10 mt-24 py-12">
         <div class="container mx-auto px-4 text-center text-slate-500 dark:text-gray-400">
             <div class="flex justify-center space-x-6 mb-6">
@@ -381,7 +365,6 @@
         </div>
     </footer>
 
-    <!-- Scripts -->
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
         // AOS Animação
