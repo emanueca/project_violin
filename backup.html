@@ -1,421 +1,160 @@
 <!DOCTYPE html>
-<html lang="pt-BR" class="">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aprenda Violino e Teoria Musical | Projeto Musical</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
-    <script>
-        // Configuração do Tailwind para o modo escuro baseado em classe
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    // Você pode estender cores etc. aqui se precisar
-                }
-            }
-        }
-    </script>
-    <style>
-        html {
-            scroll-behavior: smooth;
-            scroll-padding-top: 100px;
-        }
-        body {
-            font-family: 'Inter', sans-serif;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Project Violin — Redirecionando…</title>
 
-        /* --- Estilos para Modo Escuro (Default) --- */
-        .dark body { background-color: #0f172a; color: #e2e8f0; }
-        .dark .liquid-glass {
-            background: rgba(17, 24, 39, 0.5);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .dark .liquid-glass-header {
-            background: rgba(15, 23, 42, 0.7);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .dark .section-subtitle { color: #9ca3af; }
-        .dark .nav-link { color: #d1d5db; }
-        .dark .nav-link:hover { color: #38bdf8; }
-        .dark .text-primary { color: #0ea5e9; }
-        .dark .text-secondary { color: #e2e8f0; }
+  <!-- Redirecionamento por META como fallback (2s) -->
+  <meta http-equiv="refresh" content="2; url=./code/index.html">
 
-        /* --- Estilos para Modo Claro --- */
-        .light body { background-color: #f1f5f9; color: #1e293b; }
-        .light .liquid-glass {
-            background: rgba(255, 255, 255, 0.5);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(0, 0, 0, 0.08);
-        }
-        .light .liquid-glass-header {
-            background: rgba(241, 245, 249, 0.7);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-        }
-        .light .section-subtitle { color: #475569; }
-        .light .nav-link { color: #334155; }
-        .light .nav-link:hover { color: #0ea5e9; }
-        .light .text-primary { color: #0c4a6e; } /* Azul mais escuro para contraste */
-        .light .text-secondary { color: #1e293b; }
-        .light .highlight-text { color: #0ea5e9; /* Mantém o azul vibrante */}
-        .light .highlight-blue { color: #0ea5e9; }
+  <!-- Prefetch opcional do destino -->
+  <link rel="prefetch" href="./code/index.html" as="document">
 
-
-        /* Animação Vibrante (Comum para ambos os temas) */
-        @keyframes vibrate-subtle {
-            0% { transform: scale(1); text-shadow: 0 0 5px rgba(14, 165, 233, 0); }
-            50% { transform: scale(1.01); text-shadow: 0 0 10px rgba(14, 165, 233, 0.5); }
-            100% { transform: scale(1); text-shadow: 0 0 5px rgba(14, 165, 233, 0); }
-        }
-        .highlight-text, .button-blue {
-            animation: vibrate-subtle 5s ease-in-out infinite;
-        }
-        
-        /* Estilos Gerais */
-        .liquid-glass, .liquid-glass-header {
-             border-radius: 1rem;
-             transition: all 0.3s ease;
-        }
-        .liquid-glass-header { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
-        .highlight-text { color: #0ea5e9; }
-        .highlight-blue { color: #0ea5e9; }
-        
-        .button-blue {
-            background-color: #0ea5e9;
-            color: #ffffff;
-            transition: all 0.3s ease;
-        }
-        .button-blue:hover:not(:disabled) {
-            background-color: #0284c7;
-            box-shadow: 0 0 20px rgba(14, 165, 233, 0.5);
-            transform: translateY(-2px);
-        }
-        .button-blue:disabled {
-            cursor: not-allowed;
-            background-color: #0ea5e9;
-            opacity: 0.7;
-        }
-        .button-outline-blue {
-            border: 1px solid #0ea5e9;
-            color: #0ea5e9;
-            transition: all 0.3s ease;
-        }
-        .button-outline-blue:hover {
-            background-color: rgba(14, 165, 233, 0.1);
-            transform: translateY(-2px);
-        }
-        .section-title { font-size: 2.25rem; font-weight: 800; margin-bottom: 1rem; }
-        .section-subtitle { font-size: 1.125rem; max-width: 600px; margin-left: auto; margin-right: auto; }
-        
-        @keyframes bounce-scroll { 0%, 20%, 50%, 80%, 100% { transform: translateY(0); } 40% { transform: translateY(-15px); } 60% { transform: translateY(-8px); } }
-        .scroll-down-icon { animation: bounce-scroll 2.5s infinite; }
-    </style>
+  <style>
+    :root{
+      --bg1:#0ea5e9; /* azul */
+      --bg2:#0b1220; /* slate bem escuro */
+      --card:#0f172a;
+      --text:#e2e8f0;
+      --muted:#94a3b8;
+      --accent:#38bdf8;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 800px at 10% 10%, #1b2842 0%, transparent 60%),
+        radial-gradient(800px 600px at 90% 90%, #11304a 0%, transparent 60%),
+        linear-gradient(135deg, var(--bg2), #0b1b2e 40%, #0a2238 70%, #082035 100%);
+      overflow:hidden;
+    }
+    .grid{
+      height:100%;
+      display:grid;
+      place-items:center;
+      padding:24px;
+    }
+    .card{
+      width:min(560px, 92vw);
+      background: color-mix(in srgb, var(--card) 92%, #000 8%);
+      border:1px solid rgba(255,255,255,.06);
+      border-radius:20px;
+      padding:28px 24px;
+      box-shadow: 0 10px 40px rgba(2,6,23,.35), inset 0 1px 0 rgba(255,255,255,.04);
+      position:relative;
+      overflow:hidden;
+    }
+    .glow{
+      position:absolute; inset:-2px;
+      background: radial-gradient(600px 200px at 20% -10%, rgba(56,189,248,.15), transparent 70%),
+                  radial-gradient(600px 200px at 80% 110%, rgba(14,165,233,.12), transparent 70%);
+      filter: blur(16px);
+      z-index:0;
+      pointer-events:none;
+    }
+    .content{ position:relative; z-index:1; }
+    .logo{
+      width:56px; height:56px; border-radius:14px;
+      display:grid; place-items:center;
+      background: linear-gradient(160deg, rgba(56,189,248,.25), rgba(2,132,199,.2));
+      border:1px solid rgba(56,189,248,.35);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.06);
+      margin-bottom:14px;
+    }
+    h1{
+      margin:4px 0 8px; font-size:clamp(22px, 3.2vw, 28px);
+      letter-spacing:.2px;
+    }
+    p{ margin:0 0 16px; color:var(--muted) }
+    .progress{
+      height:10px; width:100%;
+      background: rgba(148,163,184,.15);
+      border:1px solid rgba(148,163,184,.25);
+      border-radius:999px;
+      overflow:hidden;
+      position:relative;
+    }
+    .bar{
+      height:100%;
+      width:0%;
+      background: linear-gradient(90deg, var(--accent), #7dd3fc);
+      box-shadow: 0 0 24px rgba(56,189,248,.5);
+      animation: fill 1.2s ease-in-out forwards;
+    }
+    @keyframes fill { to { width:100% } }
+    .btn{
+      display:inline-flex; align-items:center; gap:10px;
+      margin-top:16px; padding:12px 16px;
+      color:#001018; background:var(--accent);
+      border:none; border-radius:12px; font-weight:700;
+      text-decoration:none; transition: transform .15s ease, box-shadow .15s ease;
+      box-shadow: 0 8px 24px rgba(56,189,248,.35);
+    }
+    .btn:hover{ transform: translateY(-1px); box-shadow: 0 12px 30px rgba(56,189,248,.45); }
+    .hint{ font-size:13px; color:var(--muted); margin-top:8px }
+    .footer{
+      margin-top:14px; font-size:12px; color:var(--muted)
+    }
+    .note{ opacity:.7 }
+  </style>
 </head>
-<body class="transition-colors duration-300">
-    
-    <header class="liquid-glass-header fixed w-full z-50 top-0">
-        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <a href="#home" class="flex items-center space-x-2">
-                <i class="fas fa-music text-2xl highlight-blue"></i>
-                <h1 class="text-xl font-bold text-secondary">Aulas de Violino</h1>
-            </a>
-            <div class="flex items-center space-x-6">
-                <nav class="hidden md:flex items-center space-x-6 text-sm font-medium">
-                    <a href="#project" class="nav-link">O Projeto</a>
-                    <a href="#metodologia" class="nav-link">Jornada Musical</a>
-                    <a href="#biblioteca" class="nav-link">Biblioteca</a>
-                    <a href="#teachers" class="nav-link">Professores</a>
-                    <a href="#gallery" class="nav-link">Galeria</a>
-                    <a href="https://form.jotform.com/251873218822056" class="nav-link" target="_blank">Inscreva-se</a>
-                    <a href="#contact" class="nav-link">Contato</a>
-                </nav>
-                <button id="theme-toggle" class="text-lg highlight-blue hover:scale-110 transition-transform">
-                    <i id="theme-toggle-dark-icon" class="fas fa-moon"></i>
-                    <i id="theme-toggle-light-icon" class="fas fa-sun hidden"></i>
-                </button>
-                <button class="md:hidden text-2xl focus:outline-none text-secondary" id="menu-toggle">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
+<body>
+  <div class="grid">
+    <div class="card" role="status" aria-live="polite">
+      <div class="glow" aria-hidden="true"></div>
+      <div class="content">
+        <div class="logo" aria-hidden="true">
+          <!-- Ícone SVG de violino estilizado -->
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M13.5 6.5l4-4m-1 5l3-3M7 13l4 4m5.5-9.5l-6 6M9 21c-1.5 1.5-5 .5-6-1s-.5-4.5 1-6l7-7c1.5-1.5 4-1.5 5.5 0s1.5 4 0 5.5L9 21Z"
+                  stroke="#7dd3fc" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
         </div>
-        <div id="mobile-menu" class="hidden md:hidden absolute w-full left-0 mt-0 py-4 liquid-glass-header border-t-0">
-            <ul class="flex flex-col items-center space-y-4">
-                 <li><a href="#project" class="nav-link">O Projeto</a></li>
-                <li><a href="#metodologia" class="nav-link">Jornada Musical</a></li>
-                <li><a href="#biblioteca" class="nav-link">Biblioteca</a></li>
-                <li><a href="#teachers" class="nav-link">Professores</a></li>
-                <li><a href="#gallery" class="nav-link">Galeria</a></li>
-                <li><a href="https://form.jotform.com/251873218822056" class="nav-link" target="_blank">Inscreva-se</a></li>
-                <li><a href="#contact" class="nav-link">Contato</a></li>
-            </ul>
+
+        <h1>Project Violin</h1>
+        <p>Redirecionando para o site principal…</p>
+
+        <div class="progress" aria-label="Progresso do redirecionamento">
+          <div class="bar"></div>
         </div>
-    </header>
 
-    <main>
-        <section id="home" class="relative min-h-screen flex flex-col items-center justify-center text-center px-4 pt-20">
-            <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1612299273574-d833ac798e83?auto=format&fit=crop&w=1470&q=80')] bg-cover bg-center opacity-20 dark:opacity-20 opacity-30 bg-fixed"></div>
-            <div class="absolute inset-0 bg-gradient-to-b from-transparent to-slate-100 dark:to-[#0f172a]"></div>
-            
-            <div class="relative z-10" data-aos="fade-up">
-                <h1 class="text-4xl md:text-6xl font-extrabold mb-6 highlight-text">Aprenda Violino e Teoria Musical</h1>
-                <p class="text-lg md:text-xl text-slate-700 dark:text-gray-300 mb-10 max-w-2xl mx-auto">Aprenda violino com teoria e leitura de partituras, de um jeito leve e prático — para todas as idades.</p>
-                <div class="flex flex-col sm:flex-row justify-center gap-4">
-                    <a href="#contact" class="button-blue px-8 py-3 rounded-full font-bold">
-                        Comece Sua Jornada
-                    </a>
-                    <a href="#project" class="button-outline-blue px-8 py-3 rounded-full font-bold">
-                        Saiba Mais
-                    </a>
-                </div>
-            </div>
-            <a href="#project" class="absolute bottom-10 z-10 scroll-down-icon">
-                <i class="fas fa-chevron-down text-2xl text-gray-500"></i>
-            </a>
-        </section>
-        
-        <section id="project" class="py-24">
-            <div class="container mx-auto px-4">
-                <div class="text-center mb-16" data-aos="fade-up">
-                    <h2 class="section-title highlight-text">Sobre Nosso Projeto</h2>
-                    <p class="section-subtitle">O projeto tem como objetivo valorizar a música na região e oferecer diferentes métodos para compreendê-la de forma acessível e significativa.</p>
-                </div>
-                <div class="grid md:grid-cols-2 gap-12 items-center">
-                    <div data-aos="fade-right" class="order-2 md:order-1">
-                        <div class="liquid-glass p-8 md:p-10">
-                            <h3 class="text-2xl font-bold mb-4 highlight-blue">Transformando Através da Música</h3>
-                            <p class="mb-6">O projeto oferece um espaço para o aprendizado do violino, unindo a excelência do ensino musical com o objetivo de fortalecer laços comunitários e promover o desenvolvimento pessoal e social.</p>
-                            <ul class="space-y-4">
-                                <li class="flex items-start"><i class="fas fa-check-circle highlight-blue mr-3 mt-1"></i><div><strong class="text-secondary">Presença de Palco:</strong>Metodologia desenvolvida para estimular o desempenho dos alunos em apresentações públicas, trabalhando confiança, expressão corporal e comunicação musical desde os primeiros níveis. </div></li>
-                                <li class="flex items-start"><i class="fas fa-check-circle highlight-blue mr-3 mt-1"></i><div><strong class="text-secondary">Aulas em Grupo:</strong> Um ambiente para aprender, compartilhar e crescer com outros músicos.</div></li>
-                                <li class="flex items-start"><i class="fas fa-check-circle highlight-blue mr-3 mt-1"></i><div><strong class="text-secondary">Apresentações Inspiradoras:</strong> Oportunidades para se apresentar, ganhar confiança e celebrar o progresso.</div></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div data-aos="fade-left" class="order-1 md:order-2">
-                        <img src="photos/EstudandoPartituras.jpg" alt="aprendendo violino" class="rounded-2xl shadow-xl dark:shadow-blue-900/20 w-full h-auto object-cover">
-                    </div>
-                </div>
-            </div>
-        </section>
+        <a class="btn" id="go-now" href="./code/index.html" rel="nofollow">
+          Ir agora
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M7 17l7-7m0 0H8m6 0v6" stroke="#001018" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
 
-        <section id="metodologia" class="py-24 bg-white/30 dark:bg-slate-900/50">
-            <div class="container mx-auto px-4">
-                <div class="text-center mb-20" data-aos="fade-up">
-                    <h2 class="section-title highlight-text">Sua Jornada Musical</h2>
-                    <p class="section-subtitle">Acompanhe a linha de evolução do nosso projeto, desde os primeiros acordes até o domínio do palco. Uma trajetória clara, dividida em estágios para o seu crescimento.</p>
-                </div>
-                <div class="relative max-w-3xl mx-auto">
-                    <div class="absolute left-1/2 w-1 h-full bg-sky-300 dark:bg-sky-900/50 transform -translate-x-1/2 rounded-full"></div>
-                    <div class="relative mb-16" data-aos="fade-right">
-                        <div class="absolute w-12 h-12 bg-white dark:bg-slate-800 rounded-full left-1/2 transform -translate-x-1/2 flex items-center justify-center border-4 border-slate-200 dark:border-slate-700"><i class="fas fa-seedling text-xl highlight-blue"></i></div>
-                        <div class="w-full md:w-[47%] md:mr-auto p-8 liquid-glass">
-                            <h3 class="text-2xl font-bold mb-4 highlight-blue text-center md:text-left">Iniciante (1–2 anos)</h3>
-                            <p class="mb-4 text-sm">O ponto de partida da sua paixão pelo violino, construindo uma base sólida com confiança e apoio.</p>
-                            <ul class="space-y-3"><li class="flex items-start"><i class="fas fa-check-circle highlight-blue mr-3 mt-1"></i><div><strong class="text-secondary">Aula de Descoberta:</strong> Sua primeira experiência para sentir a magia do violino.</div></li><li class="flex items-start"><i class="fas fa-check-circle highlight-blue mr-3 mt-1"></i><div><strong class="text-secondary">Fundamentos Essenciais:</strong> Aprenda postura, manuseio do arco e som limpo.</div></li><li class="flex items-start"><i class="fas fa-check-circle highlight-blue mr-3 mt-1"></i><div><strong class="text-secondary">Método Suzuki:</strong> Iniciação a um dos métodos mais renomeados.</div></li><li class="flex items-start"><i class="fas fa-check-circle highlight-blue mr-3 mt-1"></i><div><strong class="text-secondary">Primeiras Apresentações:</strong> Ganhe confiança em um ambiente acolhedor.</div></li></ul>
-                        </div>
-                    </div>
-                    <div class="relative" data-aos="fade-left">
-                        <div class="absolute w-12 h-12 bg-white dark:bg-slate-800 rounded-full left-1/2 transform -translate-x-1/2 flex items-center justify-center border-4 border-slate-200 dark:border-slate-700"><i class="fas fa-rocket text-xl highlight-blue"></i></div>
-                        <div class="w-full md:w-[47%] md:ml-auto p-8 liquid-glass">
-                             <h3 class="text-2xl font-bold mb-4 highlight-blue text-center md:text-left">Intermediário (3–4 anos)</h3>
-                            <p class="mb-4 text-sm">É hora de aprofundar sua arte, refinar a técnica e encontrar sua voz como músico.</p>
-                             <ul class="space-y-3"><li class="flex items-start"><i class="fas fa-trophy highlight-blue mr-3 mt-1"></i><div><strong class="text-secondary">Festivais Competitivos:</strong> Participe de eventos de maior destaque.</div></li><li class="flex items-start"><i class="fas fa-book-open highlight-blue mr-3 mt-1"></i><div><strong class="text-secondary">Suzuki Avançado:</strong> Explore peças e técnicas complexas.</div></li><li class="flex items-start"><i class="fas fa-theater-masks highlight-blue mr-3 mt-1"></i><div><strong class="text-secondary">Domínio de Palco:</strong> Trabalhe com expressão corporal.</div></li><li class="flex items-start"><i class="fas fa-star highlight-blue mr-3 mt-1"></i><div><strong class="text-secondary">Diferencial:</strong> Acesso a mentorias e gravações em estúdio.</div></li></ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="biblioteca" class="py-24">
-            <div class="container mx-auto px-4">
-                <div class="text-center mb-16" data-aos="fade-up">
-                    <h2 class="section-title highlight-text">Biblioteca de Partituras (incompleto)</h2>
-                    <p class="section-subtitle">Explore nossa coleção gratuita. Clique em qualquer partitura para ver mais detalhes e baixar.</p>
-                </div>
-                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
-                    <div class="liquid-glass p-4 text-center group" data-aos="fade-up">
-                        <a href="#" class="block overflow-hidden rounded-lg mb-4"><img src="https://i.imgur.com/kS5k55L.png" alt="Partitura Suzuki 1" class="w-full h-auto transform group-hover:scale-105 transition-transform duration-300"></a>
-                        <h3 class="font-bold text-secondary">Suzuki Método 1</h3><p class="text-sm highlight-blue mb-3">S. Suzuki</p><p class="text-sm text-slate-500 dark:text-slate-400">(Indisponivel para download, apenas para retirada local)</p>
-                    </div>
-                    <div class="liquid-glass p-4 text-center group" data-aos="fade-up" data-aos-delay="50">
-                        <a href="#" class="block overflow-hidden rounded-lg mb-4"><img src="https://i.imgur.com/kS5k55L.png" alt="Partitura Suzuki 2" class="w-full h-auto transform group-hover:scale-105 transition-transform duration-300"></a>
-                        <h3 class="font-bold text-secondary">Suzuki Método 2</h3><p class="text-sm highlight-blue mb-3">S. Suzuki</p><p class="text-sm text-slate-500 dark:text-slate-400">(Indisponivel para download, apenas para retirada local)</p>
-                    </div>
-                    <div class="liquid-glass p-4 text-center group" data-aos="fade-up" data-aos-delay="100">
-                        <a href="photos/BrilhaBrilhamusescore.png" class="block overflow-hidden rounded-lg mb-4"><img src="photos/BrilhaBrilhamusescore.png" alt="Partitura Brilha, Estrelinha" class="w-full h-auto transform group-hover:scale-105 transition-transform duration-300"></a>
-                        <h3 class="font-bold text-secondary">Brilha, Estrelinha</h3><p class="text-sm highlight-blue mb-3">Tradicional</p><a href="#" class="text-sm font-semibold text-gray-500 hover:text-sky-500">Ver Partitura →</a>
-                    </div>
-                    <div class="liquid-glass p-4 text-center group" data-aos="fade-up" data-aos-delay="150">
-                        <a href="photos/Minuet. in g.jpg" class="block overflow-hidden rounded-lg mb-4"><img src="photos/Minuet. in g.jpg"alt="Partitura Minueto de Bach" class="w-full h-auto transform group-hover:scale-105 transition-transform duration-300"></a>
-                        <h3 class="font-bold text-secondary">Minuet. de Bach in g.</h3><p class="text-sm highlight-blue mb-3">J. S. Bach</p><a href="#" class="text-sm font-semibold text-gray-500 hover:text-sky-500">Ver Partitura →</a>
-                    </div>
-                    <div class="liquid-glass p-4 text-center group" data-aos="fade-up" data-aos-delay="200">
-                        <a href="photos/ode-a-alegria-v-7.jpg" class="block overflow-hidden rounded-lg mb-4"><img src="photos/ode-a-alegria-v-7.jpg" alt="Partitura Ode à Alegria" class="w-full h-auto transform group-hover:scale-105 transition-transform duration-300"></a>
-                        <h3 class="font-bold text-secondary">Ode à Alegria</h3><p class="text-sm highlight-blue mb-3">L. v. Beethoven</p><a href="#" class="text-sm font-semibold text-gray-500 hover:text-sky-500">Ver Partitura →</a>
-                    </div>
-                     <div class="liquid-glass p-4 text-center group" data-aos="fade-up" data-aos-delay="250">
-                        <a href="photos/Canon in D.png" class="block overflow-hidden rounded-lg mb-4"><img src="photos/Canon in D.png" alt="Partitura Pachelbel" class="w-full h-auto transform group-hover:scale-105 transition-transform duration-300"></a>
-                        <h3 class="font-bold text-secondary">Canon in D</h3><p class="text-sm highlight-blue mb-3">J. Pachelbel</p><a href="#" class="text-sm font-semibold text-gray-500 hover:text-sky-500">Ver Partitura →</a>
-                    </div>
-                     <div class="liquid-glass p-4 text-center group" data-aos="fade-up" data-aos-delay="300">
-                        <a href="photos/as-quatro-estacoes-v-3.jpg" class="block overflow-hidden rounded-lg mb-4"><img src="photos/as-quatro-estacoes-v-3.jpg" alt="Partitura Vivaldi" class="w-full h-auto transform group-hover:scale-105 transition-transform duration-300"></a>
-                        <h3 class="font-bold text-secondary">As Quatro Estações</h3><p class="text-sm highlight-blue mb-3">A. Vivaldi</p><a href="#" class="text-sm font-semibold text-gray-500 hover:text-sky-500">Ver Partitura →</a>
-                    </div>
-                     <div class="liquid-glass p-4 text-center group" data-aos="fade-up" data-aos-delay="350">
-                        <a href="photos/Escala-de-Do-Maior-Violino-Dedilhado.jpg" class="block overflow-hidden rounded-lg mb-4"><img src="photos/Escala-de-Do-Maior-Violino-Dedilhado.jpg" alt="Partitura de Escalas" class="w-full h-auto transform group-hover:scale-105 transition-transform duration-300"></a>
-                        <h3 class="font-bold text-secondary">Escala de Dó</h3><p class="text-sm highlight-blue mb-3">Estudo Técnico</p><a href="#" class="text-sm font-semibold text-gray-500 hover:text-sky-500">Ver Partitura →</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="teachers" class="py-24 bg-white/30 dark:bg-slate-900/50">
-            <div class="container mx-auto px-4">
-                <div class="text-center mb-16" data-aos="fade-up">
-                    <h2 class="section-title highlight-text">Professores</h2>
-                    <p class="section-subtitle">Conheça os professores por trás do Projeto</p>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                    <div class="liquid-glass overflow-hidden text-center group" data-aos="zoom-in" data-aos-delay="100">
-                        <img src="https://images.unsplash.com/photo-1551024354-91a3f6954278?auto=format&fit=crop&w=800&q=80" alt="Professor Hélio" class="w-full h-64 object-cover object-center transform group-hover:scale-105 transition-transform duration-300">
-                        <div class="p-6"><h3 class="text-xl font-bold text-secondary">Hélio – Violinista</h3><p class="highlight-blue font-medium mb-3">Professor Profissional</p><p class="text-sm">Com vasta experiência, vai dar aulas em grupo para os interessados, focando na postura e som limpo</p></div>
-                    </div>
-                    <div class="liquid-glass overflow-hidden text-center group" data-aos="zoom-in" data-aos-delay="200">
-                        <img src="https://images.unsplash.com/photo-1542652694-469b45a30898?auto=format&fit=crop&w=800&q=80" alt="Professor Emanuel" class="w-full h-64 object-cover object-center transform group-hover:scale-105 transition-transform duration-300">
-                        <div class="p-6"><h3 class="text-xl font-bold text-secondary">Emanuel – Violinista</h3><p class="highlight-blue font-medium mb-3">Toca Violino desde os 9 anos de idade...</p><p class="text-sm">Busca inspirar os alunos a explorarem seu dom musical, focando na partitura e teoria</p></div>
-                    </div>
-                    <div class="liquid-glass overflow-hidden text-center group" data-aos="zoom-in" data-aos-delay="300">
-                        <img src="https://images.unsplash.com/photo-1581898799432-c73ac706240d?auto=format&fit=crop&w=800&q=80" alt="Projeto Musikantiga" class="w-full h-64 object-cover object-center transform group-hover:scale-105 transition-transform duration-300">
-                        <div class="p-6"><h3 class="text-xl font-bold text-secondary">Musikantiga</h3><p class="highlight-blue font-medium mb-3">Direção Artística</p><p class="text-sm">Projeto presente desde sempre na música</p></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="gallery" class="py-24">
-            <div class="container mx-auto px-4">
-                <div class="text-center mb-16" data-aos="fade-up">
-                    <h2 class="section-title highlight-text">Galeria (em desenvolvimento)</h2>
-                    <p class="section-subtitle">Um pouco dos nossos encontros, apresentações.</p>
-                </div>
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    <div class="grid gap-4">
-                        <div data-aos="fade-up" data-aos-delay="0"><img class="h-auto max-w-full rounded-lg shadow-lg hover:shadow-sky-500/30 transition-shadow duration-300" src="ADICIONE IMAGEM" alt="."></div>
-                        <div data-aos="fade-up" data-aos-delay="100"><img class="h-auto max-w-full rounded-lg shadow-lg hover:shadow-sky-500/30 transition-shadow duration-300" src="ADICIONE IMAGEM" alt="."></div>
-                    </div>
-                    <div class="grid gap-4">
-                        <div data-aos="fade-up" data-aos-delay="200"><img class="h-auto max-w-full rounded-lg shadow-lg hover:shadow-sky-500/30 transition-shadow duration-300" src="ADICIONE IMAGEM" alt="."></div>
-                        <div data-aos="fade-up" data-aos-delay="300"><img class="h-auto max-w-full rounded-lg shadow-lg hover:shadow-sky-500/30 transition-shadow duration-300" src="ADICIONE IMAGEM" alt="."></div>
-                    </div>
-                    <div class="grid gap-4">
-                        <div data-aos="fade-up" data-aos-delay="400"><img class="h-auto max-w-full rounded-lg shadow-lg hover:shadow-sky-500/30 transition-shadow duration-300" src="ADICIONE IMAGEM" alt="."></div>
-                        <div data-aos="fade-up" data-aos-delay="500"><img class="h-auto max-w-full rounded-lg shadow-lg hover:shadow-sky-500/30 transition-shadow duration-300" src="ADICIONE IMAGEM" alt="."></div>
-                    </div>
-                    <div class="grid gap-4">
-                        <div data-aos="fade-up" data-aos-delay="600"><img class="h-auto max-w-full rounded-lg shadow-lg hover:shadow-sky-500/30 transition-shadow duration-300" src="ADICIONE IMAGEM" alt="."></div>
-                        <div data-aos="fade-up" data-aos-delay="700"><img class="h-auto max-w-full rounded-lg shadow-lg hover:shadow-sky-500/30 transition-shadow duration-300" src="ADICIONE IMAGEM" alt="."></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact" class="py-24 bg-white/30 dark:bg-slate-900/50">
-            <div class="container mx-auto px-4">
-                <div class="text-center mb-16" data-aos="fade-up">
-                    <h2 class="section-title highlight-text">Entre em Contato</h2>
-                    <p class="section-subtitle">Tire suas dúvidas, agende sua aula de descoberta ou junte-se a nós nesta jornada musical.</p>
-                </div>
-                <div class="max-w-2xl mx-auto liquid-glass p-8 md:p-12" data-aos="fade-up">
-                    <div class="space-y-8 text-base">
-                         <div class="flex items-start"><i class="fas fa-map-marker-alt highlight-blue mt-1 mr-4 w-5 text-center text-xl"></i><div><strong class="text-secondary block">Endereço</strong><p>Av. Hofman, 182 - Erval Seco, RS, 98390-000</p></div></div>
-                         <div class="flex items-start"><i class="fab fa-whatsapp highlight-blue mt-1 mr-4 w-5 text-center text-xl"></i><div><strong class="text-secondary block">WhatsApp</strong><p>(55) 99907-0868</p></div></div>
-                         <div class="flex items-start"><i class="fas fa-envelope highlight-blue mt-1 mr-4 w-5 text-center text-xl"></i><div><strong class="text-secondary block">Email</strong><p>Emanuelziegler3@gmail.com</p></div></div>
-                         <div class="flex items-start"><i class="fas fa-clock highlight-blue mt-1 mr-4 w-5 text-center text-xl"></i><div><strong class="text-secondary block">Horários</strong><p>Escolha do aluno!</p></div></div>
-                    </div>
-                    <div class="mt-10 text-center border-t pt-8 border-slate-200 dark:border-white/10">
-                        <p class="text-lg font-semibold text-secondary mb-6">Pronto para começar? Garanta sua vaga agora mesmo!</p>
-                        <a href="https://form.jotform.com/251873218822056" target="_blank" class="button-blue px-8 py-3 rounded-full font-bold inline-block text-lg">
-                            <i class="fas fa-user-plus mr-2"></i> Inscreva-se Já!
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="border-t border-slate-200 dark:border-white/10 mt-24 py-12">
-        <div class="container mx-auto px-4 text-center text-slate-500 dark:text-gray-400">
-            <div class="flex justify-center space-x-6 mb-6">
-                <a href="https://www.facebook.com/emanuel.martins.7545708?locale=pt_BR" class="hover:text-sky-500 transition" aria-label="Facebook"><i class="fab fa-facebook-f fa-lg"></i></a>
-                <a href="https://www.instagram.com/emanuel_zzie/" class="hover:text-sky-500 transition" aria-label="Instagram"><i class="fab fa-instagram fa-lg"></i></a>
-                <a href="https://github.com/emanueca/project_name/tree/main" class="hover:text-sky-500 transition" aria-label="GitHub"><i class="fab fa-github fa-lg"></i></a>
-                <a href="https://form.jotform.com/251873218822056" class="hover:text-sky-500 transition" aria-label="Contato"><i class="fas fa-file-alt fa-lg"></i></a>
-            </div>
-            <p class="text-sm">© 2025 Emanuel. Todos os direitos reservados.</p>
-            <p class="text-xs mt-2">Uma iniciativa para a difusão da arte e da educação musical.</p>
+        <div class="hint">Se não acontecer automaticamente em alguns instantes, clique em <b>Ir agora</b>.</div>
+        <div class="footer">
+          <span class="note">GitHub Pages • Redirecionador de pasta <code>project_violin/</code> → <code>./code/index.html</code></span>
         </div>
-    </footer>
+      </div>
+    </div>
+  </div>
 
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script>
-        // AOS Animação
-        AOS.init({ duration: 700, once: true, offset: 50 });
+  <noscript>
+    <div style="position:fixed;bottom:12px;left:0;right:0;text-align:center;color:#e2e8f0;">
+      JavaScript desativado. Acesse manualmente: <a href="./code/index.html" style="color:#7dd3fc;">./code/index.html</a>
+    </div>
+  </noscript>
 
-        // Menu Mobile
-        const menuToggle = document.getElementById('menu-toggle');
-        const mobileMenu = document.getElementById('mobile-menu');
-        if(menuToggle) {
-            menuToggle.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
-        }
-        document.querySelectorAll('#mobile-menu a, .nav-link').forEach(link => {
-            link.addEventListener('click', (e) => {
-                if(mobileMenu && !mobileMenu.classList.contains('hidden')) {
-                     setTimeout(() => { mobileMenu.classList.add('hidden'); }, 150);
-                }
-            });
-        });
+  <script>
+    // Caminho de destino (relativo à pasta project_violin/)
+    const TARGET = './code/index.html';
 
-        // LÓGICA DO TEMA CLARO/ESCURO
-        const themeToggleBtn = document.getElementById('theme-toggle');
-        const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
-        const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
-        const htmlElement = document.documentElement;
+    // Garante que o botão sempre aponte corretamente
+    document.getElementById('go-now').setAttribute('href', TARGET);
 
-        // Função para definir o tema
-        function setTheme(theme) {
-            if (theme === 'dark') {
-                htmlElement.classList.remove('light');
-                htmlElement.classList.add('dark');
-                themeToggleLightIcon.classList.remove('hidden');
-                themeToggleDarkIcon.classList.add('hidden');
-                localStorage.setItem('theme', 'dark');
-            } else {
-                htmlElement.classList.remove('dark');
-                htmlElement.classList.add('light');
-                themeToggleDarkIcon.classList.remove('hidden');
-                themeToggleLightIcon.classList.add('hidden');
-                localStorage.setItem('theme', 'light');
-            }
-        }
-
-        // Verifica o tema salvo ou a preferência do sistema na carga inicial
-        const preferredTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-        setTheme(preferredTheme);
-
-        // Event listener para o botão de toggle
-        themeToggleBtn.addEventListener('click', function() {
-            const currentTheme = htmlElement.classList.contains('dark') ? 'dark' : 'light';
-            setTheme(currentTheme === 'dark' ? 'light' : 'dark');
-        });
-    </script>
+    // Redirecionamento primário por JS (mais rápido que a meta-refresh)
+    // Use replace() para não manter o redirecionador no histórico
+    setTimeout(() => {
+      window.location.replace(TARGET);
+    }, 1200);
+  </script>
 </body>
 </html>
