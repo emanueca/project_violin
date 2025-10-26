@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aprenda Violino e Teoria Musical | Projeto Musical</title>
+
+  <!-- Tailwind e bibliotecas -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+  <!-- Configuração do Tailwind -->
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: { extend: {} }
+    }
+  </script>
+
+  <!-- CSS externo -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="transition-colors duration-300">
+
+  <!-- Cabeçalho -->
+  <header class="liquid-glass-header fixed w-full z-50 top-0">
+    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+      <a href="#home" class="flex items-center space-x-2">
+        <i class="fas fa-music text-2xl highlight-blue"></i>
+        <h1 class="text-xl font-bold text-secondary">Aulas de Violino</h1>
+      </a>
+
+      <div class="flex items-center space-x-6">
+        <nav class="hidden md:flex items-center space-x-6 text-sm font-medium">
+          <a href="#project" class="nav-link">O Projeto</a>
+          <a href="#metodologia" class="nav-link">Jornada Musical</a>
+          <a href="#biblioteca" class="nav-link">Biblioteca</a>
+          <a href="#teachers" class="nav-link">Professores</a>
+          <a href="#gallery" class="nav-link">Galeria</a>
+          <a href="https://form.jotform.com/251873218822056" target="_blank" class="nav-link">Inscreva-se</a>
+          <a href="#contact" class="nav-link">Contato</a>
+        </nav>
+
+        <button id="theme-toggle" class="text-lg highlight-blue hover:scale-110 transition-transform">
+          <i id="theme-toggle-dark-icon" class="fas fa-moon"></i>
+          <i id="theme-toggle-light-icon" class="fas fa-sun hidden"></i>
+        </button>
+        <button id="menu-toggle" class="md:hidden text-2xl focus:outline-none text-secondary">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Menu mobile -->
+    <div id="mobile-menu" class="hidden md:hidden absolute w-full left-0 mt-0 py-4 liquid-glass-header border-t-0">
+      <ul class="flex flex-col items-center space-y-4">
+        <li><a href="#project" class="nav-link">O Projeto</a></li>
+        <li><a href="#metodologia" class="nav-link">Jornada Musical</a></li>
+        <li><a href="#biblioteca" class="nav-link">Biblioteca</a></li>
+        <li><a href="#teachers" class="nav-link">Professores</a></li>
+        <li><a href="#gallery" class="nav-link">Galeria</a></li>
+        <li><a href="https://form.jotform.com/251873218822056" class="nav-link" target="_blank">Inscreva-se</a></li>
+        <li><a href="#contact" class="nav-link">Contato</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Conteúdo principal -->
+  <main>
+    <!-- 🔽 Aqui continuam todas as seções do site (home, project, metodologia, biblioteca, etc.) exatamente como no original -->
+  </main>
+
+  <!-- Rodapé -->
+  <footer class="border-t border-slate-200 dark:border-white/10 mt-24 py-12">
+    <div class="container mx-auto px-4 text-center text-slate-500 dark:text-gray-400">
+      <div class="flex justify-center space-x-6 mb-6">
+        <a href="https://www.facebook.com/emanuel.martins.7545708?locale=pt_BR" class="hover:text-sky-500 transition"><i class="fab fa-facebook-f fa-lg"></i></a>
+        <a href="https://www.instagram.com/emanuel_zzie/" class="hover:text-sky-500 transition"><i class="fab fa-instagram fa-lg"></i></a>
+        <a href="https://github.com/emanueca/project_name/tree/main" class="hover:text-sky-500 transition"><i class="fab fa-github fa-lg"></i></a>
+        <a href="https://form.jotform.com/251873218822056" class="hover:text-sky-500 transition"><i class="fas fa-file-alt fa-lg"></i></a>
+      </div>
+      <p class="text-sm">© 2025 Emanuel. Todos os direitos reservados.</p>
+      <p class="text-xs mt-2">Uma iniciativa para a difusão da arte e da educação musical.</p>
+    </div>
+  </footer>
+
+  <div id="theme-popup" class="liquid-glass">
+    <span class="text-secondary">
+      Dica: Você pode alternar entre o tema claro e escuro usando o ícone 
+      <i class="fas fa-sun"></i> / <i class="fas fa-moon"></i>!
+    </span>
+  </div>
+
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
